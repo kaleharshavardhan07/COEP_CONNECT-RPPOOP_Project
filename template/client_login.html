@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LOGIN</title>
+    <link rel="stylesheet" type="text/css" href="slide navbar style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styl.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <style>
+        /* slide navbar style.css */
+
+        body {
+            font-family: 'Jost', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        h2 {
+            color: rgb(155, 155, 55);
+
+        }
+
+        a {
+            color: rgb(50, 145, 174);
+        }
+
+        .login {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        label {
+            font-size: 2.5rem;
+            font-weight: bolder;
+            color: #3498db;
+            margin: 10px;
+
+
+        }
+
+        .login {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Add more styles as needed */
+
+        /* Add your additional styles for other elements */
+    </style>
+
+</head>
+
+<body>
+    <div class="main">
+
+        <div class="login">
+            <form method="POST" action="{{ url_for('client_login') }}">
+                <label for="chk" aria-hidden="true">Client Login</label>
+                <input type="email" name="email" placeholder="Email" required="">
+                <input type="password" name="pswd" placeholder="Password" required="">
+                <button>Login</button>
+
+            </form>
+            <div>
+                <H2> <a href="{{ url_for('client_signup')}}"> NEW USER ? </a>
+            </div>
+            </H2>
+            <a href="{{ url_for('client_signup')}}">SIGN-UP</a>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="../static/mainstyle.css">
+    <!-- Add any other stylesheets, libraries, or fonts you may need -->
+
+    <!-- Anime.js for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
+</head>
+<body>
+    <header class="theme-header">
+        <h1>Inventory Management System</h1>
+    </header>
+<!-- 
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#user-login">User Login</a></li>
+            <li><a href="#admin-login">Admin Login</a></li>
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#our-team">Our Team</a></li>
+        </ul>
+    </nav> -->
+
+    <section id="home" class="main-content">
+        <h2>Welcome to our Inventory Management System</h2>
+        <!-- Add your main content here -->
+    </section>
+    <section class="grp">
+
+    <div id="user-login" class="login-section">
+        <h2>User Login</h2>
+       <a href="{{ url_for('client_login')}}"> <button class="log">Log-in</button></a>
+        <!-- Add user login form or content here -->
+    </div>
+
+    <div id="admin-login" class="login-section">
+        <h2>Admin Login</h2>
+        <a href="{{ url_for('login')}}"> <button class="log">Log-in</button></a>
+        <!-- Add admin login form or content here -->
+    </div>
+</section>
+
+    <section id="about-us" class="main-content">
+        <h2>About Us</h2>
+        <!-- Add information about your company or project here -->
+    </section>
+
+    <section id="our-team" class="main-content">
+        <h2>Our Team</h2>
+        <!-- Add information about your team members here -->
+    </section>
+
+    <footer class="animated-footer">
+        <p>&copy; 2024 Inventory Management System. All rights reserved.</p>
+    </footer>
+
+    <script src="../static/mainjs.js"></script>
+    <!-- Add any other scripts you may need -->
+</body>
+</html>

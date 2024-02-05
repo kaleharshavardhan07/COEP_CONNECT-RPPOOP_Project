@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="{{ url_for('user_search')}}">
+    <h4>ENTER AT LEAST ONE INPUT </h4>
+    <h4>TO SEARCH THE INDUSTRY</h4>
+    <input type="text" name="txt" placeholder="User name" >
+    <input type="text" name="cmpDomain" placeholder="company_domain" >
+    <input type="text" name="city" placeholder="City" >
+    <input type="phonenumber" name="phn" placeholder="Mobile_No" >
+    <input type="phonenumber" name="pin" placeholder="PIN-CODE" >
+    <input type="text" name="state" placeholder="State" >
+    <button>SUB-MIT</button>
+    <h2>Search Results</h2>
+    {% if results %}
+        <ul>
+            {% for admin in results %}
+                <li>Name: {{ admin.username }}, E-mail: {{ admin.email }}, City: {{ admin.City }}, State: {{ admin.State }}, Phone: {{ admin.phone_number }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+
+</form>
+</body>
+</html>
