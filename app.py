@@ -503,6 +503,17 @@ def main_feed():
     else:
         flash('You need to login first.', 'error')
         return redirect(url_for('login')) 
+        
+@app.route('/dashboard/<user_id1>')
+def dashboard1(user_id1):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    else:
+        try:
+            other_user = users_collection.find_one({'_id': ObjectId(user_id1)})
+            return render_template('profile_page.html', other_user_data=other_user)
+        except Exception as e:
+            return f"An error occurred: {str(e)}"
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
