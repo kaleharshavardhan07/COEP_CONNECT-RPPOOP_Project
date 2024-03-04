@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    
+</head>
+
+<body>
+    <div class="main">
+
+        <div class="dashboard">
+            <button class="button"><a class="btna" href="{{ url_for('login') }}">LOG-OUT</a></button>
+        
+            <h2>Welcome to the Dashboard</h2>
+            <ul>
+                <li><span class="spanhead">Username:</span> {{ user_data['username'] }}</li>
+                <li><span class="spanhead">Email:</span> {{ user_data['email'] }}</li>
+                <li><span class="spanhead">Company Domain:</span> {{ user_data['CompanyDomain'] }}</li>
+                <li><span class="spanhead">City:</span> {{ user_data['City'] }}</li>
+                <li><span class="spanhead">Mobile No:</span> {{ user_data['Mobile_No'] }}</li>
+                <li><span class="spanhead">PIN Code:</span> {{ user_data['PINCODE'] }}</li>
+                <li><span class="spanhead">State:</span> {{ user_data['State'] }}</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script>
+        localStorage.setItem("user", `{{ user_data}}`);
+    </script>
+</body>
+
+</html>

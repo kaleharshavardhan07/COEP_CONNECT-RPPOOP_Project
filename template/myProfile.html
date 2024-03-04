@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="../static/myProfile.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4">
+            <a href="{{ url_for('main_feed') }}"><i class="fa-solid fa-left-long"></i></a> Profile
+        </h4>
+        <form action="{{ url_for('profile') }}" method="post">
+            <div class="card overflow-hidden">
+                <div class="row no-gutters mygutter row-bordered row-border-light">
+                    <div class="col-md-9">
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="account-general">
+                                <div class="info">
+                                    <h1>I am {{ user_data.username }}</h1>
+                                    <h4>{{ user_data.year }} {{ user_data.branch }} Engineering Student </h4>
+                                </div>
+                                <hr class="border-light m-0">
+                                <div class="card-body">
+                                    <div class="newcol">
+                                        <div class="col1">
+                                            <div class="form-group col">
+                                                <label class="form-label">MIS NO.</label>
+                                                <input type="text" name="mis_no" class="form-control mb-1" value="{{ user_data.MIS_NO }}" required>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" name="email" class="form-control" value="{{ user_data.email }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col1">
+                                            <div class="form-group col">
+                                                <label class="form-label">Mobile NO.</label>
+                                                <input type="text" name="mobile_no" class="form-control mb-1" value="{{ user_data.Mobile_No }}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right mt-3">
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+
+</body>
+</html>
+
+    
+
