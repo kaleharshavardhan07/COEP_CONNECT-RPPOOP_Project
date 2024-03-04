@@ -106,7 +106,7 @@
         }
 
         .header__logo {
-            font-size: 24px;
+            font-size: 18px;
         }
 
         .navbar {
@@ -145,12 +145,12 @@
         }
 
         .feed1 {
-
-            margin-top: 90px;
+            background-color:rgb(17, 78, 73);
+            margin-top: 100px;
             width: 56%;
             margin-left: 22%;
             margin-right: 22%;
-            border: solid 2px rgb(75, 75, 84);
+            border: solid 2px rgb(132, 132, 132);
             box-shadow: rgba(17, 111, 140, 0.56) 0px 22px 70px 4px;
             
         }
@@ -163,15 +163,19 @@
             margin-top: 20px;
             align-items: center;
         }
+        .outerfeedbox{
+            width: 80%;
+            height: max-content;
+        }
 
         .feedbox {
-            border: solid 4px rgb(3, 143, 174);
+            border: solid 4px rgb(149, 176, 182);
             margin-bottom: 10px;
             padding: 10px;
-
+            width: 100%;
             backdrop-filter: blur(6px) saturate(110%);
             -webkit-backdrop-filter: blur(6px) saturate(110%);
-            background-color: rgba(17, 25, 40, 0.6);
+            background-color: rgba(25, 11, 55, 0.6);
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.125);
 
@@ -205,7 +209,7 @@
         }
 
         .feed a {
-            padding: 2px;
+            padding: 0px;
 
             text-decoration: none;
             color: #007bff;
@@ -216,7 +220,7 @@
             color: #0056b3;
         }
 
-        h3 {
+        h4,h3 {
             color: #777;
         }
     </style>
@@ -226,7 +230,7 @@
     
     <div class="header">
         <div class="header__logo">
-            <strong>LOGO</strong>
+            <strong>COEP CONNECT</strong>
         </div>
         <nav class="navbar">
             <ul class="navbar__menu">
@@ -336,31 +340,34 @@
     <div id="allfeed" class="feed1">
 
         <div class="feed">
-            <div>
+            <div class="outerfeedbox">
                 {% for data in datas %}
                 <div class="feedbox">
-                    <h2>{{data.username}}</h2>
-                    <p>TIME:{{data.post_time}}</p>
-                    <h3>TITLE:{{data.title}}</h3>
-                    <h3>SUBJECT:{{data.subject}}</h3>
-                    <p>AUTH:{{data.description}}</p>
-                    <p>LINK:{{data.link}}</p>
+                    <a href="{{ url_for('dashboard1', user_id1=data.user_id) }}"><h2> ⭕{{ data.username }}</h2></a>
+                    <div style="border: 4px solid rgb(90, 90, 109); padding:10px; border-radius: 20px;">
+                    <h3>TITLE:{{ data.title }}</h3>
+                    <p>SUBJECT:{{ data.subject }}</p>
+                    <p>AUTH:{{ data.description }}</p>
+                    <a href="{{data.links}}"><p>LINK:{{ data.links}}</p></div></a>
+                    <p>TIME:{{ data.post_time }}</p>
                 </div>
-                {% endfor %}
+                {% endfor %} 
+
             </div>
         </div>
+        
     </div>
     <div id="myfeed" class="feed1 gone">
 
         <div class="feed">
-            <div>
+            <div class="outerfeedbox">
                 {% for data in datas %}
                 {% if data.user_id ==user_id1 %}
                 <div class="feedbox">
                     <h3>{{data.username}}</h3>
                     <p>TIME:{{data.post_time}}</p>
-                    <h3>TITLE:{{data.title}}</h3>
-                    <h3>SUBJECT:{{data.subject}}</h3>
+                    <h4>TITLE:{{data.title}}</h4>
+                    <h4>SUBJECT:{{data.subject}}</h4>
                     <p>AUTH:{{data.description}}</p>
                     <p>LINK:{{data.link}}</p>
                 </div>

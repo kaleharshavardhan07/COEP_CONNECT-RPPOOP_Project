@@ -198,6 +198,10 @@ def index():
     if request.method == 'POST':
         requirements = request.form.getlist('requirement')
         user_requirements = np.array([1 if choice in requirements else 0 for choice in CHOICES])
+        print("User requirements before reshaping:", user_requirements)
+        # user_requirements = user_requirements.reshape(1, -1)
+        # print("User requirements after reshaping:", user_requirements)
+
     else:
         user_requirements = np.zeros(len(CHOICES)) 
     
@@ -396,8 +400,7 @@ def submit():
     else:
         return redirect('/signin')
 
-
-
+# MYPROFILE
 @app.route('/myprofile')
 def myprof():
     if 'user_id' in session:
@@ -501,24 +504,43 @@ def main_feed():
     else:
         flash('You need to login first.', 'error')
         return redirect(url_for('login')) 
+    
+@app.route('/dashboard/<user_id1>')
+def dashboard1(user_id1):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    else:
+        try:
+            other_user = users_collection.find_one({'_id': ObjectId(user_id1)})
+            return render_template('profile_page.html', other_user_data=other_user)
+        except Exception as e:
+            return f"An error occurred: {str(e)}"
+
+   
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
     return redirect(url_for('login'))    
-    
+
 @app.route('/connect')
 def connect():
     return render_template('connect_people.html')
 # UNDER WORKING  
-@app.route('/profile_page')
-def dashboard():
-    user_data = request.args.get('user_data')
-    if user_data:
-        user_data = eval(user_data)  
-        return render_template('dashboard.html', user_data=user_data)
-    else:
-        return "User data not found"
+@app.route('/dashboard')
+def dashboard(user_id1):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
     
+    else:
+         print(user_id1)
+         try:
+                other_user=users_collection.find_one({'_id': ObjectId(user_id1)})
+                return render_template('profile_page.html',other_user_data=other_user)
+         except Exception as e:
+                return f"An error occurred: {str(e)}"
+        
+
+   
     
     
 
