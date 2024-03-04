@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/mainstyle.css">
+</head>
+
+<body>
+    <div class="noise"></div>
+    <div class="overlay"></div>
+    <div class="terminal"></div>
+
+       <center><header class="theme-header">
+            <h1>COEP-CONNECT</h1>
+        </header></center> 
+       <center> <section id="home" class="main-content">
+            <h2>Welcome to COEP CONNECT</h2>
+        </section></center>
+        <center><section class="grp">
+            <div id="admin-login" class="login-section">
+                <h2>Login</h2>
+                <a href="{{ url_for('login')}}"> <button class="log">Log-in</button></a>
+
+            </div>
+            <div id="admin-login" class="login-section">
+                <h2>Sign-up</h2>
+                <a href="{{ url_for('signup')}}"> <button class="log">Log-in</button></a>
+            </div>
+        </section></center>
+      <center>  <section id="about-us" class="main-content">
+            <h2>About Us</h2>
+        </section>
+
+        <section id="our-team" class="main-content">
+            <h2>Our Team</h2>
+        </section></center>
+
+        <center><footer class="animated-footer">
+            <p>&copy; 2024 COEPCONNECT . All rights reserved.</p>
+        </footer></center>
+    
+
+</body>
+
+</html>
