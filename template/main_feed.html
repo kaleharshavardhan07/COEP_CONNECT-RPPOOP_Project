@@ -1,0 +1,367 @@
+!
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/dropdown.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+
+        body {
+            background: #000;
+            background-size: cover;
+            background-position: center;
+            font-family: "Open Sans", sans-serif;
+        }
+
+
+        .container {
+            width: 60%;
+            height: 100%;
+            background-color: aliceblue;
+        }
+
+        .post-container {
+            color: #000;
+            position: fixed;
+            top: 20%;
+            margin-left: 20%;
+            margin-right: 25%;
+            width: 50%;
+
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-header h1 {
+            margin: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        #post-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #cancel-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .gone {
+            z-index: -100;
+            display: none;
+        }
+
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f0f0f0;
+            padding: 10px 20px;
+        }
+
+        .header__logo {
+            font-size: 24px;
+        }
+
+        .navbar {
+            display: flex;
+        }
+
+        .navbar__menu {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar__item {
+            margin-right: 10px;
+        }
+
+        .navbar__link {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+        }
+
+        .navbar__link:hover {
+            background-color: #ddd;
+        }
+
+        .navbar__link span {
+            margin-left: 5px;
+        }
+
+        [data-feather] {
+            margin-right: 5px;
+        }
+
+        .allfeed {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feed {
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        .feed h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .feed h2 {
+            font-size: 20px;
+            color: #555;
+        }
+
+        .feed p {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .feed p:last-child {
+            margin-bottom: 20px;
+        }
+
+        .feed a {
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        .feed a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header__logo">
+            <strong>LOGO</strong>
+        </div>
+        <nav class="navbar">
+            <ul class="navbar__menu">
+                
+                <li class="navbar__item">
+                    <a href="#" id="allpost" class="navbar__link"><i
+                            data-feather="message-square"></i><span>FEED</span></a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#" id="mypost" class="navbar__link"><i data-feather="users"></i><span>MY-POST</span></a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#" id="show" class="navbar__link"><i data-feather="settings"></i><span>ADD-POST</span></a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{{url_for('connect')}}"  class="navbar__link"><i data-feather="settings"></i><span>CONNECT</span></a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#" class="navbar__link"><i data-feather="archive"></i><span>CHAT-BOX</span></a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#" class="navbar__link"><i data-feather="help-circle"></i><span>HELPDISK</span></a>
+                </li>
+                
+                <li class="navbar__item">
+                    <a href="{{url_for('notify')}}" class="navbar__link"><i data-feather="folder"></i><span>NOTIFICATION</span></a>
+                </li>
+                <div class="profile-dropdown">
+                    <div onclick="toggle()" class="profile-dropdown-btn">
+                        <div class="profile-img">
+                            <i class="fa-solid fa-user"></i>
+                            <i class="fa-solid fa-circle"></i>
+                        </div>
+
+                        <span>Me
+                            <i class="fa-solid fa-angle-down"></i>
+                        </span>
+                    </div>
+
+                    <ul class="profile-dropdown-list">
+                        <li class="profile-dropdown-list-item">
+                            <a href="{{url_for('myprof')}}">
+                                <i class="fa-regular fa-user"></i>
+                                See Profile
+                            </a>
+                        </li>
+
+                        <li class="profile-dropdown-list-item">
+                            <a href="{{url_for('myinter')}}">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                My Interest
+                            </a>
+                        </li>
+
+                        <li class="profile-dropdown-list-item">
+                            <a href="{{url_for('myconnect')}}">
+                                <i class="fa-solid fa-user-group"></i>
+                                My connections
+                            </a>
+                        </li>
+                        <li class="profile-dropdown-list-item">
+                            <a href="{{url_for('mypass')}}">
+                                <i class="fa-solid fa-lock"></i>
+                                Change Password
+                            </a>
+                        </li>
+                        <hr />
+
+                        <li class="profile-dropdown-list-item">
+                            <a href="{{url_for('logout')}}">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </ul>
+        </nav>
+
+
+    </div>
+    <div id="card" class="post-container gone">
+        <div class="post-header">
+            <h1>New Post</h1>
+            <button id="cancel-btn">Cancel</button>
+        </div>
+        <form id="post-form" method="POST">
+            <div class="form-group">
+                <label for="post-title">Title:</label>
+                <input type="text" id="post-title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="post-subject">Subject:</label>
+                <input type="text" id="post-subject" name="subject">
+            </div>
+            <div class="form-group">
+                <label for="post-description">Description:</label>
+                <textarea id="post-description" name="description" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="post-description">Links:</label>
+                <textarea id="post-description" name="links" rows="2"></textarea>
+            </div>
+            <button type="submit" id="post-btn">Post</button>
+        </form>
+    </div>
+    <div id="allfeed" class="feed">
+
+        <div class="feed">
+            {% for data in datas %}
+            <p>{{data.post_time}}</p>
+            <h1>{{data.title}}</h1>
+            <h2>{{data.subject}}</h2>
+            <p>{{data.description}}</p>
+            <p>{{data.link}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="myfeed" class="feed gone">
+
+        <div class="feed">
+            {% for data in datas %}
+            {% if data.user_id ==user_id1 %}
+            <p>{{data.post_time}}</p>
+            <h1>{{data.title}}</h1>
+            <h2>{{data.subject}}</h2>
+            <p>{{data.description}}</p>
+            <p>{{data.link}}</p>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var cancelBtn = document.getElementById('cancel-btn');
+            var postForm = document.getElementById('show');
+            var card = document.getElementById('card');
+            cancelBtn.addEventListener('click', function () {
+                card.classList.add("gone")
+                // Redirect to feed page
+            });
+            postForm.addEventListener('click', function () {
+                card.classList.remove("gone")
+                // Redirect to feed page
+            });
+
+
+        })
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var allpost = document.getElementById('allpost');
+            var mypost = document.getElementById('mypost');
+            var allfeed = document.getElementById('allfeed');
+            var myfeed = document.getElementById('myfeed');
+            mypost.addEventListener('click', function () {
+                myfeed.classList.remove("gone")
+                allfeed.classList.add("gone")
+                // Redirect to feed page
+            });
+            allpost.addEventListener('click', function () {
+                allfeed.classList.remove("gone")
+                myfeed.classList.add("gone")
+
+                // Redirect to feed page
+            });
+
+
+        })
+    </script>
+    <script src="../static/dropdown.js"></script>
+</body>
+
+</html>

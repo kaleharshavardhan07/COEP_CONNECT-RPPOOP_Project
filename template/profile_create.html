@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/back.css">
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+    <style>
+        .mt-100 {
+            margin-top: 100px
+        }
+
+        .d-flex {
+            justify-content: center;
+        }
+    </style>
+    <!-- MULTISELECT SCRIPT   -->
+    <script>$(document).ready(function () {
+
+            var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+                removeItemButton: true,
+            });
+
+
+        });</script>
+
+    <!-- FEST SCRIPT     -->
+    <script>
+        function addEvent() {
+            var selectedFests = document.querySelectorAll('.fest option:checked');
+            var selectedPositions = document.querySelector('.position').value;
+            var selectedPosts = document.querySelectorAll('.post option:checked');
+            var eventDetails = "";
+
+            // Combine selected fest options
+            eventDetails += "Fest: ";
+            selectedFests.forEach(function (option) {
+                eventDetails += option.value + ", ";
+                option.selected = false; // Clear the selected option
+            });
+            eventDetails = eventDetails.slice(0, -2); // Remove the last comma and space
+            eventDetails += "";
+
+            // Add selected position
+            eventDetails += "-" + selectedPositions + "";
+
+            // Combine selected post options
+            eventDetails += "-";
+            selectedPosts.forEach(function (option) {
+                eventDetails += option.value + ", ";
+                option.selected = false; // Clear the selected option
+            });
+            eventDetails = eventDetails.slice(0, -2); // Remove the last comma and space
+
+            // Display the event details in a paragraph with a delete button
+            var paragraph = "<p><p class='festpara'>" + eventDetails + " </p><button onclick='deleteEvent(this.parentNode)'>Delete</button></p>";
+            document.getElementById('eventDetails').innerHTML += paragraph;
+        }
+
+        function deleteEvent(paragraph) {
+            paragraph.parentNode.removeChild(paragraph);
+        }
+    </script>
+
+    <!-- SUBMIT SCRIPT  -->
+    <!-- <script>
+        function submitForm() {
+            var formData = $('#eventForm').serialize();
+            $.ajax({
+                type: 'POST',
+                url: '/profile',
+                data: formData,
+                success: function (response) {
+                    alert('Data submitted successfully');
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    alert('Error occurred while submitting data');
+                }
+            });
+        }
+    </script> -->
+
+
+</head>
+
+<body>
+    <div class="noise"></div>
+    <div class="overlay"></div>
+    <div class="terminal"></div>
+    <div style="position:sticky; z-index: 1000;">
+        <center>
+            <section>
+                <h2>WHICH OF FOLLWING CLUBS YOY HAVE JOINED?</h2>
+                <div class="row d-flex justify-content-center mt-100">
+                    <div class="col-md-6"> <select class="id12" id="choices-multiple-remove-button"
+                            placeholder="Select  tags" multiple>
+                            <option value="1">Drama and Film Club</option>
+                            <option value="2">Boat Club </option>
+                            <option value="3">Civil Services Aspirant's Club</option>
+                            <option value="4">Janeev Club </option>
+                            <option value="5">HAM Club</option>
+                            <option value="6">Astronomy Club</option>
+                            <option value="7">Science Club</option>
+                            <option value="8">History Club</option>
+                            <option value="9">Personality Development club</option>
+                            <option value="10">Google Student Club</option>
+                            <option value="11">Cultural Club</option>
+                            <option value="12">Debate Club</option>
+                            <option value="13">Ramanujan Mathematics Club</option>
+                            <option value="13">Arts and Crafts</option>
+                            <option value="14">Aarya Raas</option>
+                            <option value="15">COEP Philomystics</option>
+                            <option value="16">CSAT</option>
+                            <option value="17">Robotics Study CLub</option>
+                            <option value="18">Aerial Robot Study Circle (ARSC)</option>
+                            <option value="19">Spic Macay</option>
+                            <option value="20">CSI</option>
+                            <option value="21">DSAI</option>
+                            <option value="22">COFSUG</option>
+                            <option value="23">COEP Mitra</option>
+                        </select> </div>
+                </div>
+            </section>
+            <section>
+                <h2>WHIC OF THE FOLLWING Sports YOU LIKE , INTRESTED ?</h2>
+                <div class="row d-flex justify-content-center mt-100">
+                    <div class="col-md-6"> <select class="id12" id="choices-multiple-remove-button"
+                            placeholder="Select  tags" multiple>
+                            <option value="Cricket">Cricket</option>
+                            <option value="Field Hockey">Field Hockey</option>
+                            <option value="Badminton">Badminton</option>
+                            <option value="Football">Football</option>
+                            <option value="Tennis">Tennis</option>
+                            <option value="Kabaddi">Kabaddi</option>
+                            <option value="Wrestling">Wrestling</option>
+                            <option value="Table Tennis">Table Tennis</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Volleyball">Volleyball</option>
+                            <option value="Athletics">Athletics</option>
+                            <option value="Boxing">Boxing</option>
+                            <option value="Shooting">Shooting</option>
+                            <option value="Chess">Chess</option>
+                            <option value="Golf">Golf</option>
+                            <option value="Squash">Squash</option>
+                            <option value="Cycling">Cycling</option>
+                            <option value="Swimming">Swimming</option>
+                            <option value="Martial Arts">Martial Arts</option>
+                            <option value="Archery">Archery</option>
+                            <option value="Snooker">Snooker</option>
+                            <option value="Gymnastics">Gymnastics</option>
+                            <option value="Rowing">Rowing</option>
+                            <option value="Rugby">Rugby</option>
+                            <option value="Weightlifting">Weightlifting</option>
+                            <option value="Equestrian">Equestrian</option>
+                            <option value="Polo">Polo</option>
+                            <option value="Billiards">Billiards</option>
+                            <option value="Fencing">Fencing</option>
+                            <option value="Sailing">Sailing</option>
+
+                        </select> </div>
+                </div>
+            </section>
+            <section>
+                <h2>YOUR HOBBIES</h2>
+                <div class="row d-flex justify-content-center mt-100">
+                    <div class="col-md-6"> <select class="id12" id="choices-multiple-remove-button"
+                            placeholder="Select  tags" multiple>
+                            <option value="Reading">Reading</option>
+                            <option value="Writing">Writing</option>
+                            <option value="Cooking">Cooking</option>
+                            <option value="Traveling">Traveling</option>
+                            <option value="Photography">Photography</option>
+                            <option value="Painting">Painting</option>
+                            <option value="Gardening">Gardening</option>
+                            <option value="Hiking">Hiking</option>
+                            <option value="Playing musical instruments">Playing musical instruments</option>
+                            <option value="Playing sports">Playing sports</option>
+                            <option value="Yoga and meditation">Yoga and meditation</option>
+                            <option value="Watching movies">Watching movies</option>
+                            <option value="Gaming">Gaming</option>
+                            <option value="Birdwatching">Birdwatching</option>
+                            <option value="Astronomy">Astronomy</option>
+                            <option value="DIY projects">DIY projects</option>
+                            <option value="Crafting">Crafting</option>
+                            <option value="Knitting or crocheting">Knitting or crocheting</option>
+                            <option value="Volunteering">Volunteering</option>
+                            <option value="Learning new languages">Learning new languages</option>
+                            <option value="Collecting stamps">Collecting stamps</option>
+                            <option value="Collecting coins">Collecting coins</option>
+                            <option value="Collecting antiques">Collecting antiques</option>
+                            <option value="Fashion and styling">Fashion and styling</option>
+                            <option value="Music concerts">Music concerts</option>
+                            <option value="Music festivals">Music festivals</option>
+                            <option value="Wine tasting">Wine tasting</option>
+                            <option value="Home decor">Home decor</option>
+                            <option value="Sustainable living practices">Sustainable living practices</option>
+                            <option value="History">History</option>
+                            <option value="Archaeology">Archaeology</option>
+                            <option value="Fishing">Fishing</option>
+                            <option value="Scuba diving">Scuba diving</option>
+                            <option value="Food tasting">Food tasting</option>
+                            <option value="Exploring different cuisines">Exploring different cuisines</option>
+                            <option value="Stand-up comedy">Stand-up comedy</option>
+                            <option value="Tea ceremonies">Tea ceremonies</option>
+                            <option value="Interior design">Interior design</option>
+                            <option value="Camping">Camping</option>
+                            <option value="Poetry">Poetry</option>
+                            <option value="Board games">Board games</option>
+                            <option value="Puzzles">Puzzles</option>
+                            <option value="Martial arts">Martial arts</option>
+                            <option value="Writing poetry">Writing poetry</option>
+                            <option value="Writing lyrics">Writing lyrics</option>
+                            <option value="Acting">Acting</option>
+                            <option value="Dancing">Dancing</option>
+                            <option value="Singing">Singing</option>
+                            <option value="Motorcycling">Motorcycling</option>
+                            <option value="Beekeeping">Beekeeping</option>
+                            <option value="Robotics">Robotics</option>
+                            <option value="Pottery">Pottery</option>
+                            <option value="Calligraphy">Calligraphy</option>
+                            <option value="Paragliding">Paragliding</option>
+                            <option value="Rock climbing">Rock climbing</option>
+                            <option value="Wine making">Wine making</option>
+                            <option value="Horseback riding">Horseback riding</option>
+                            <option value="Target shooting">Target shooting</option>
+                            <option value="Magic tricks">Magic tricks</option>
+                            <option value="Origami">Origami</option>
+                            <option value="Sailing">Sailing</option>
+                            <option value="Surfing">Surfing</option>
+                            <option value="Snowboarding">Snowboarding</option>
+                            <option value="Skiing">Skiing</option>
+                            <option value="Rafting">Rafting</option>
+                            <option value="Bungee jumping">Bungee jumping</option>
+                            <option value="Skateboarding">Skateboarding</option>
+                            <option value="Longboarding">Longboarding</option>
+                            <option value="Metal detecting">Metal detecting</option>
+                            <option value="Astronomy">Astronomy</option>
+                            <option value="Space exploration">Space exploration</option>
+                            <option value="Cosplay">Cosplay</option>
+                            <option value="Cosmetics">Cosmetics</option>
+                            <option value="Makeup tutorials">Makeup tutorials</option>
+                            <option value="Hair styling">Hair styling</option>
+                            <option value="Bodybuilding">Bodybuilding</option>
+                            <option value="Weightlifting">Weightlifting</option>
+                            <option value="CrossFit">CrossFit</option>
+                            <option value="Cycling">Cycling</option>
+                            <option value="Mountain biking">Mountain biking</option>
+                            <option value="Road cycling">Road cycling</option>
+                            <option value="Urban exploring">Urban exploring</option>
+                            <option value="Environmental activism">Environmental activism</option>
+                            <option value="Wildlife photography">Wildlife photography</option>
+                            <option value="Animal rescue">Animal rescue</option>
+                            <option value="Pet grooming">Pet grooming</option>
+                            <option value="Dog training">Dog training</option>
+                            <option value="Cat training">Cat training</option>
+                            <option value="Horse training">Horse training</option>
+                            <option value="Pet adoption">Pet adoption</option>
+                            <option value="Exotic pets">Exotic pets</option>
+                            <option value="Reptiles">Reptiles</option>
+                            <option value="Amphibians">Amphibians</option>
+                            <option value="Marine biology">Marine biology</option>
+                            <option value="Coral reef conservation">Coral reef conservation</option>
+                            <option value="Deep-sea diving">Deep-sea diving</option>
+                            <option value="Underwater photography">Underwater photography</option>
+                            <option value="Marine conservation">Marine conservation</option>
+                            <option value="Bird photography">Bird photography</option>
+                            <option value="Bird watching">Bird watching</option>
+                        </select> </div>
+                </div>
+            </section>
+        </center>
+        <center>
+            <section>
+                <h2>
+                    ANY FEST YOU CURRENTLY PART OF ?
+                </h2>
+            </section>
+            <form id="eventForm">
+                <div id="events">
+                    <div class="event">
+                        <label for="fest">Fest:</label>
+                        <select name="fest" class="fest">
+                            <option value="blank"></option>
+                            <option value="Zest">Zest</option>
+                            <option value="Regatta">Regatta</option>
+                            <option value="Mindspark">Mindspark</option>
+                            <option value="Gathering">Gathering</option>
+                            <option value="PSF">PSF</option>
+                            <option value="Impression">Impression</option>
+                        </select><br><br>
+
+                        <label for="position">Position:</label>
+                        <select name="position" class="position">
+                            <option value="blank"></option>
+                            <option value="Head">Head</option>
+                            <option value="Coordinator">Coordinator</option>
+                            <option value="Volunteer">Volunteer</option>
+                            <option value="Ex Coordinator">Ex Coordinator</option>
+                            <option value="Ex Volunteer">Ex Volunteer</option>
+                            <option value="Ex Head">Ex Head</option>
+                        </select><br><br>
+
+                        <label for="post">Post:</label>
+                        <select name="post" class="post">
+                            <option value="blank"></option>
+                            <option value="Accounts and Documentation">Accounts and Documentation</option>
+                            <option value="Alumni Outreach Group">Alumni Outreach Group</option>
+                            <option value="Campus Management">Campus Management</option>
+                            <option value="Decor Design and VFX">Decor Design and VFX</option>
+                            <option value="Events and Networking">Events and Networking</option>
+                            <option value="Finance and Marketing">Finance and Marketing</option>
+                            <option value="IIC Coordinator">IIC Coordinator</option>
+                            <option value="Innovation & Intellectual Property Rights">Innovation & Intellectual Property
+                                Rights</option>
+                            <option value="Investor Relations">Investor Relations</option>
+                            <option value="Media and Photography">Media and Photography</option>
+                            <option value="Operations and Logistics">Operations and Logistics</option>
+                            <option value="Public Relations">Public Relations</option>
+                            <option value="Publicity">Publicity</option>
+                            <option value="WEB">WEB</option>
+                        </select><br><br>
+                    </div>
+                </div>
+                <button type="button" onclick="addEvent()">Add Event</button>
+            </form>
+        </center>
+        <center>
+            <div id="eventDetails"></div>
+        </center>
+        <center>
+
+        </center>
+        <center>
+            <button id="getSelectedClubs">Submit</button>
+        </center>
+        <center>
+            <a href="{{ url_for('login')}}"><button>
+                    Proceed to sign in
+                </button>
+        </center></a>
+    </div>
+
+
+    <script>document.getElementById("getSelectedClubs").addEventListener("click", function () {
+            var btn = document.getElementById('getSelectedClubs');
+            var selectedClubs = [];
+            var selectElements = document.querySelectorAll(".id12");
+            selectElements.forEach(function (selectElement) {
+                for (var i = 0; i < selectElement.options.length; i++) {
+                    if (selectElement.options[i].selected) {
+                        selectedClubs.push(selectElement.options[i].text);
+                    }
+                }
+            });
+            var festparaElements = document.querySelectorAll(".festpara");
+            festparaElements.forEach(function (festparaElement) {
+                selectedClubs.push(festparaElement.innerText);
+            });
+            console.log(selectedClubs);
+            // You can do whatever you want with the selectedClubs array here
+            fetch('/profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data: selectedClubs })
+            })
+
+            btn.textContent = "Submitted";
+
+        });
+    </script>
+
+
+
+</body>
+
+</html>
