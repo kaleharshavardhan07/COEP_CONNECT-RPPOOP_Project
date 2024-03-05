@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for,jsonify,ses
 from pymongo import MongoClient
 from bson import ObjectId  
 from datetime import datetime
+import pytz
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from flask_pymongo import PyMongo
@@ -471,7 +472,9 @@ def main_feed():
         datas = list(post_collection.find().sort('post_time', -1))
 
         if request.method == 'POST':
-            current_time = datetime.now()
+            time = datetime.utcnow()
+            ist=pytz.timezone('Asia/kolkata')
+            current_time=time.astimezone(ist)
             post_data = {
                 "username": user.get('username'),
                 'user_id': user_id,
