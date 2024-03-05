@@ -45,6 +45,16 @@
             color: black;
             border-color: #b7b7b7;
         }
+        .lastBTN{
+            background-color: #17e960;
+            color: black;
+            height: 40px;
+            width: 169px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
     </style>
     <!-- MULTISELECT SCRIPT   -->
     <script>$(document).ready(function () {
@@ -232,7 +242,7 @@
                 </div>
             </div>
         </section>
-       <center> <button type="submit">Find My Connection</button></center>
+       <center> <button type="submit" class="lastBTN">Find My Connection</button></center>
         <center> <h1>Prefered Connections</h1>
        <ul>
             {% for user in compatible_users %}
