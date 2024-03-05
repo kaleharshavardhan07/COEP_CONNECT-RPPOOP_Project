@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/dropdown.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <!-- Include MediaPipe Hands and Camera Utils libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
+
 
     <title>Document</title>
     <style>
@@ -223,6 +227,14 @@
         h4,h3 {
             color: #777;
         }
+        .gesture-button{
+            width: 80px;
+            position: fixed;
+            top:40px;
+            right: 40px;
+            border-radius: 10px;
+            
+        }
     </style>
 </head>
 
@@ -310,8 +322,9 @@
             </ul>
         </nav>
 
-
+       
     </div>
+    <button class="gesture-button" id="startGestureButton">Start Gesture Control</button>
     <div id="card" class="post-container gone">
         <div class="post-header">
             <h1>New Post</h1>
@@ -376,7 +389,10 @@
             </div>
         </div>
     </div>
+    <video id="videoElement" style="display: none;"></video>
 
+    <script src="../static/gesture.js"></script>
+    <script src="../static/dropdown.js"></script>
 
 
 
