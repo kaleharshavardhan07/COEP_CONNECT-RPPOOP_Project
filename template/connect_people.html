@@ -56,10 +56,10 @@
         });
     </script>
 <body>
-    <h1>Find Compatible Users</h1>
+   <center> <h1>Find Compatible Users</h1></center>
     <form action="/connect" method="post">
         <section>
-            <h2>Select Your Requirements</h2>
+            <center><h2>Select Your Requirements</h2></center>
             <div class="row d-flex justify-content-center mt-100">
                 <div class="col-md-6"> 
                     <h2>SELECT THE CLUB</h2>
@@ -232,13 +232,13 @@
                 </div>
             </div>
         </section>
-        <button type="submit">Find My Connection</button>
-        <h1>Prefered Connections</h1>
-        <ul>
+       <center> <button type="submit">Find My Connection</button></center>
+        <center> <h1>Prefered Connections</h1>
+       <ul>
             {% for user in compatible_users %}
                 <li>User ID: {{ user.user_id }} | Similarity: {{ user.similarity }}</li>
             {% endfor %}
-        </ul>
+        </ul></center>
     </form>
 
     <!-- Include necessary JavaScript libraries -->
