@@ -386,14 +386,23 @@
             var cancelBtn = document.getElementById('cancel-btn');
             var postForm = document.getElementById('show');
             var card = document.getElementById('card');
+            var postbtn=document.getElementById('post-btn')
             cancelBtn.addEventListener('click', function () {
                 card.classList.add("gone")
                 // Redirect to feed page
             });
             postForm.addEventListener('click', function () {
                 card.classList.remove("gone")
+               
                 // Redirect to feed page
             });
+            postbtn.addEventListener('click', () => {
+                setTimeout(() => {
+                    
+                    location.href = location.href;
+                }, 2000); 
+            });
+            
 
 
         })
