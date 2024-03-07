@@ -580,6 +580,9 @@ CHOICES = [
 #         return_document=True
 #     )
 #     return counter_doc['seq']
+
+
+################################################## TO CONNECT ROUTE ####################################################################
 @app.route('/connect', methods=['POST','GET'])
 def index():
     if request.method == 'POST':
@@ -612,7 +615,7 @@ def submit1():
     mongo.db.user_interests.insert_one(user_data)
     return redirect('/profile')
 
-
+######################################################  NOTIFICATION PANNEL ################################################################
 @app.route('/Send_notification')
 def notify():
     return render_template('notifications.html')
@@ -646,14 +649,14 @@ def mark_as_read():
         notifications_collection.update_one({'_id': ObjectId(notification_id)}, {'$set': {'is_read': True}})
     return 'Notifications marked as read'
 
-# CONTROL LOGOUT BY TEJAS WORKING  
+################################################### CONTROL LOGOUT BY TEJAS WORKING  #####################################################
 @app.after_request
 def add_header(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "0"
     return response
-# FUNCTION    
+######################################## FUNCTION  #########################################################################################   
 def find_year(mis):
             if mis.startswith("6122"):
                 year="Second Year"
@@ -708,11 +711,11 @@ def find_branch(mis):
         elif mis[5]=='4'and mis[4]=='1':
             branch="PLANNING"
             return branch
-# INDEX HOME PAGE 
+######################################################## INDEX HOME PAGE ###############################################################################
 @app.route('/')
 def index1():
     return render_template('Main.html')
-# LOGIN SIGN UP 
+######################################################### LOGIN SIGN UP #####################################################################
 @app.route('/signup', methods=['POST'])
 def signup():
     
@@ -763,7 +766,7 @@ def signup1():
 def login1():
     return render_template('login.html')
 
-# PROFILE CREATION OF LOGIN USER 
+####################################################### PROFILE CREATION OF LOGIN USER ############################################################
 @app.route ('/profile')
 def profile():
     return render_template('./profile_create.html')
@@ -785,7 +788,7 @@ def submit():
         return redirect('/signin')
 
 
-
+########################################################### PROFLE PAGE VIEW  AND OTHER #####################################################
 
 @app.route('/myprofile')
 def myprof():
@@ -811,7 +814,8 @@ def myinter():
 @app.route('/myConnections')
 def myconnect():
     return render_template('connection.html')
-    
+##################################################### PASSWORD CHANGE ###################################################################
+  
 @app.route('/changePass')
 def mypass():
     return render_template('change_pass.html')
@@ -849,7 +853,7 @@ def change_password():
         flash('Password updated successfully.', 'success')
         return redirect(url_for('mypass'))
         
-# PROCEEDING TO FEED PAGE AFTER LOGIN 
+####################################### PROCEEDING TO FEED PAGE AFTER LOGIN ##############################################################################
 @app.route('/main_feed', methods=['POST', 'GET'])
 def main_feed():
     user_id = session.get('user_id')
@@ -892,7 +896,9 @@ def main_feed():
     else:
         flash('You need to login first.', 'error')
         return redirect(url_for('login')) 
-        
+    
+############################################################## OTHER's PRIFILE PAGE #####################################################################
+       
 @app.route('/dashboard/<user_id1>')
 def dashboard1(user_id1):
     if 'user_id' not in session:
@@ -911,7 +917,7 @@ def logout():
 @app.route('/connect')
 def connect():
     return render_template('connect_people.html')
-# UNDER WORKING  
+############################################################# UNDER WORKING  
 @app.route('/profile_page')
 def dashboard():
     user_data = request.args.get('user_data')
