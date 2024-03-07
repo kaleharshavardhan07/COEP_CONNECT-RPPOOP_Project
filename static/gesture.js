@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const startGestureButton = document.getElementById('startGestureButton');
     const videoElement = document.getElementById('videoElement');
-    let previousY = 0;
-    const gestureThreshold = 0.01; // Threshold for detecting swipe gesture, adjust based on sensitivity required
+    let previousThumbsUp = false;
+    const gestureThreshold = 0.5; // Threshold for detecting thumbs up/down, adjust based on sensitivity required
 
     startGestureButton.addEventListener('click', startGestureControl);
 
@@ -14,18 +14,18 @@ document.addEventListener('DOMContentLoaded', function () {
     function onResults(results) {
         if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
             let landmarks = results.multiHandLandmarks[0]; // Assuming single hand, get landmarks for the first hand
-            let indexFingerTip = landmarks[8]; // Index fingertip is landmark #8
-            let deltaY = indexFingerTip.y - previousY;
-            previousY = indexFingerTip.y;
+            let thumbTip = landmarks[4]; // Thumb tip is landmark #4
+            let thumbUp = thumbTip.y < landmarks[5].y; // Check if thumb is above index finger
 
-            // Detect swipe up
-            if (deltaY < -gestureThreshold) {
-                window.scrollBy(0, -100); // Adjust scrolling amount as needed
+            // Detect thumbs up
+            if (thumbUp && !previousThumbsUp) {
+                window.scrollBy(0, -100); // Scroll up
             }
-            // Detect swipe down
-            else if (deltaY > gestureThreshold) {
-                window.scrollBy(0, 100); // Adjust scrolling amount as needed
+            // Detect thumbs down
+            else if (!thumbUp && previousThumbsUp) {
+                window.scrollBy(0, 100); // Scroll down
             }
+            previousThumbsUp = thumbUp;
         }
     }
 
@@ -33,7 +33,10 @@ document.addEventListener('DOMContentLoaded', function () {
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(function (stream) {
                 videoElement.srcObject = stream;
-                videoElement.play();
+                videoElement.addEventListener('loadedmetadata', function () {
+                    videoElement.play();
+                });
+
                 const hands = new Hands({ locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}` });
                 hands.setOptions({
                     maxNumHands: 1,

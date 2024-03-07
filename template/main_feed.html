@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="../static/dropdown.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <!-- Include MediaPipe Hands and Camera Utils libraries -->
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
 
 
     <title>Document</title>
+    <style></style>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
 
@@ -147,106 +148,224 @@
         [data-feather] {
             margin-right: 5px;
         }
-
-        .feed1 {
-            background-color:rgb(17, 78, 73);
+    </style>
+    <style>
+        a{
+            color: #4d4d4d;
+        }
+        h1{    font-size: 1.2rem;
+            font-weight: 100;}
+        .feed1{
             margin-top: 100px;
-            width: 56%;
-            margin-left: 22%;
-            margin-right: 22%;
-            border: solid 2px rgb(132, 132, 132);
-            box-shadow: rgba(17, 111, 140, 0.56) 0px 22px 70px 4px;
-            
+        }
+        body {
+            background: #e5ded8;
+            box-sizing: border-box;
         }
 
-
-        .feed {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            margin-top: 20px;
-            align-items: center;
-        }
-        .outerfeedbox{
-            width: 80%;
-            height: max-content;
+        .blog-container {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: hsla(0deg, 0%, 0%, 0.2) 0 4px 2px -2px;
+            font-family: "adelle-sans", sans-serif;
+            font-weight: 100;
+            margin: 40px auto;
+            width: 20rem;
         }
 
-        .feedbox {
-            border: solid 4px rgb(149, 176, 182);
-            margin-bottom: 10px;
-            padding: 10px;
-            width: 100%;
-            backdrop-filter: blur(6px) saturate(110%);
-            -webkit-backdrop-filter: blur(6px) saturate(110%);
-            background-color: rgba(25, 11, 55, 0.6);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.125);
-
+        @media screen and (min-width: 480px) {
+            .blog-container {
+                width: 28rem;
+            }
         }
 
-        .feed h1 {
-            padding: 2px;
-
-            font-size: 24px;
-            color: #333;
+        @media screen and (min-width: 767px) {
+            .blog-container {
+                width: 40rem;
+            }
         }
 
-        .feed h2 {
-            padding: 2px;
-
-            font-size: 20px;
-            color: #555;
+        @media screen and (min-width: 959px) {
+            .blog-container {
+                width: 50rem;
+            }
         }
 
-        .feed p {
-            padding: 2px;
-
-            font-size: 16px;
-            color: #777;
-            margin-bottom: 10px;
-        }
-
-        .feed p:last-child {
-            padding: 2px;
-            margin-bottom: 20px;
-        }
-
-        .feed a {
-            padding: 0px;
-
+        .blog-container a {
+            color: black;
             text-decoration: none;
-            color: #007bff;
-            transition: color 0.3s ease;
+            transition: 0.25s ease;
         }
 
-        .feed a:hover {
-            color: #0056b3;
+        .blog-container a:hover {
+            border-color: #ff4d4d;
+            color: #ff4d4d;
         }
 
-        h4,h3 {
-            color: #777;
+        .blog-cover {
+            background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/yosemite-3.jpg");
+            background-size: cover;
+            border-radius: 5px 5px 0 0;
+            height: 15rem;
+            box-shadow: inset hsla(0deg, 0%, 0%, 0.2) 0 64px 64px 16px;
         }
-        .gesture-button{
-            width: 80px;
-            position: fixed;
-            top:40px;
-            right: 40px;
-            border-radius: 10px;
-            
+
+        .blog-author,
+        .blog-author--no-cover {
+            margin: 0 auto;
+            padding-top: 0.125rem;
+            width: 80%;
+        }
+
+        .blog-author h3::before,
+        .blog-author--no-cover h3::before {
+            background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg");
+            background-size: cover;
+            border-radius: 50%;
+            content: " ";
+            display: inline-block;
+            height: 32px;
+            margin-right: 0.5rem;
+            position: relative;
+            top: 8px;
+            width: 32px;
+        }
+
+        .blog-author h3 {
+            color: #fff;
+            font-weight: 100;
+        }
+
+        .blog-author--no-cover h3 {
+            color: #999999;
+            font-weight: 100;
+        }
+
+        .blog-body {
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        .video-body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .blog-title h1 a {
+            color: #333;
+            font-weight: 100;
+        }
+
+        .blog-summary p {
+            color: #4d4d4d;
+        }
+
+        .blog-tags ul {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .blog-tags li+li {
+            margin-left: 0.5rem;
+        }
+
+        .blog-tags a {
+            border: 1px solid #999999;
+            border-radius: 3px;
+            color: #999999;
+            font-size: 0.75rem;
+            height: 1.5rem;
+            line-height: 1.5rem;
+            letter-spacing: 1px;
+            padding: 0 0.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            white-space: nowrap;
+            width: 5rem;
+        }
+
+        .blog-footer {
+            border-top: 1px solid #e6e6e6;
+            margin: 0 auto;
+            padding-bottom: 0.125rem;
+            width: 80%;
+        }
+
+        .blog-footer ul {
+            list-style: none;
+            display: flex;
+            flex: row wrap;
+            justify-content: flex-end;
+            padding-left: 0;
+        }
+
+        .blog-footer li:first-child {
+            margin-right: auto;
+        }
+
+        .blog-footer li+li {
+            margin-left: 0.5rem;
+        }
+
+        .blog-footer li {
+            color: #999999;
+            font-size: 0.75rem;
+            height: 1.5rem;
+            letter-spacing: 1px;
+            line-height: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .blog-footer li a {
+            color: #999999;
+        }
+
+        .comments {
+            margin-right: 1rem;
+        }
+
+        .published-date {
+            border: 1px solid #999999;
+            border-radius: 3px;
+            padding: 0 0.5rem;
+        }
+
+        .numero {
+            position: relative;
+            top: -0.5rem;
+        }
+
+        .icon-star,
+        .icon-bubble {
+            fill: #999999;
+            height: 24px;
+            margin-right: 0.5rem;
+            transition: 0.25s ease;
+            width: 24px;
+        }
+
+        .icon-star:hover,
+        .icon-bubble:hover {
+            fill: #ff4d4d;
         }
     </style>
 </head>
 
 <body>
-    
+
     <div class="header">
         <div class="header__logo">
             <strong>COEP CONNECT</strong>
         </div>
         <nav class="navbar">
             <ul class="navbar__menu">
-                
+
                 <li class="navbar__item">
                     <a href="#" id="allpost" class="navbar__link"><i
                             data-feather="message-square"></i><span>FEED</span></a>
@@ -258,17 +377,20 @@
                     <a href="#" id="show" class="navbar__link"><i data-feather="settings"></i><span>ADD-POST</span></a>
                 </li>
                 <li class="navbar__item">
-                    <a href="{{url_for('connect')}}"  class="navbar__link"><i data-feather="settings"></i><span>CONNECT</span></a>
+                    <a href="{{url_for('connect')}}" class="navbar__link"><i
+                            data-feather="settings"></i><span>CONNECT</span></a>
                 </li>
                 <li class="navbar__item">
-                    <a href="{{url_for('profile')}}" class="navbar__link"><i data-feather="archive"></i><span>CHAT-BOX</span></a>
+                    <a href="{{url_for('profile')}}" class="navbar__link"><i
+                            data-feather="archive"></i><span>CHAT-BOX</span></a>
                 </li>
                 <li class="navbar__item">
                     <a href="#" class="navbar__link"><i data-feather="help-circle"></i><span>HELPDISK</span></a>
                 </li>
-                
+
                 <li class="navbar__item">
-                    <a href="{{url_for('notify')}}" class="navbar__link"><i data-feather="folder"></i><span>NOTIFICATION</span></a>
+                    <a href="{{url_for('notify')}}" class="navbar__link"><i
+                            data-feather="folder"></i><span>NOTIFICATION</span></a>
                 </li>
                 <div class="profile-dropdown">
                     <div onclick="toggle()" class="profile-dropdown-btn">
@@ -322,7 +444,7 @@
             </ul>
         </nav>
 
-       
+
     </div>
     <button class="gesture-button" id="startGestureButton">Start Gesture Control</button>
     <div id="card" class="post-container gone">
@@ -350,27 +472,118 @@
             <button type="submit" id="post-btn">Post</button>
         </form>
     </div>
-    <div id="allfeed" class="feed1">
+    <!-- <div id="allfeed" class="feed1">
 
         <div class="feed">
             <div class="outerfeedbox">
                 {% for data in datas %}
                 <div class="feedbox">
-                    <a href="{{ url_for('dashboard1', user_id1=data.user_id) }}"><h2> ⭕{{ data.username }}</h2></a>
-                    <div style="border: 4px solid rgb(90, 90, 109); padding:10px; border-radius: 20px;">
-                    <h3>TITLE:{{ data.title }}</h3>
-                    <p>SUBJECT:{{ data.subject }}</p>
-                    <p>AUTH:{{ data.description }}</p>
-                    <a href="{{data.links}}"><p>LINK:{{ data.links}}</p></div></a>
+                    <a href="{{ url_for('dashboard1', user_id1=data.user_id) }}">
+                        <h2> ⭕{{ data.username }}</h2>
+                    </a>
+                    <div style="border: 4px solid rgb(90, 90, 109);
+                    padding: 10px;
+                    border-radius: 20px;">
+                        <h3>TITLE:{{ data.title }}</h3>
+                        <p>SUBJECT:{{ data.subject }}</p>
+                        <p>AUTH:{{ data.description }}</p>
+                        <a href="{{data.links}}">
+                            <p>LINK:{{ data.links}}</p>
+                    </a></div>
                     <p>TIME:{{ data.post_time }}</p>
                 </div>
-                {% endfor %} 
+                {% endfor %}
 
             </div>
         </div>
-        
+
+    </div> -->
+    <div id="allfeed" class="feed1"> 
+        {% for data in datas %}
+        <div class="blog-container">
+
+            <div class="blog-header">
+                <div class="blog-author--no-cover">
+                    <a href="{{ url_for('dashboard1', user_id1=data.user_id) }}">
+                        <h3> {{ data.username }}</h3>
+                    </a>
+                </div>
+            </div>
+
+            <div class="blog-body">
+                <div class="blog-title">
+                    <h1>Title:{{ data.title }}</h1>
+                </div>
+                <div class="blog-summary">
+                    <p>Subject:{{ data.subject }}</p>
+                    <p>->:{{ data.description }}</p>
+                </div> <a href="{{data.links}}">LINK:
+                    <p>{{ data.links}}</p>
+                </a>
+                <div class="blog-tags">
+                   
+                </div>
+            </div>
+
+            <div class="blog-footer">
+                <ul>
+                    <li class="published-date">Time:{{ data.post_time }}</li>
+                    <li class="comments"><a href="#"><svg class="icon-bubble">
+                                <use xlink:href="#icon-bubble"></use>
+                            </svg><span class="numero">8</span></a></li>
+                    <li class="shares"><a href="#"><svg class="icon-star">
+                                <use xlink:href="#icon-star"></use>
+                            </svg><span class="numero">3</span></a></li>
+                </ul>
+            </div>
+
+        </div>
+        {% endfor %}
     </div>
-    <div id="myfeed" class="feed1 gone">
+    <div id="myfeed" class="feed1"> {% for data in datas %}
+        {% if data.user_id ==user_id1 %}
+        <div class="blog-container">
+
+            <div class="blog-header">
+                <div class="blog-author--no-cover">
+                    <a href="{{ url_for('dashboard1', user_id1=data.user_id) }}">
+                        <h3>{{ data.username }}</h3>
+                    </a>
+                </div>
+            </div>
+
+            <div class="blog-body">
+                <div class="blog-title">
+                    <h1>Title:{{ data.title }}</h1>
+                </div>
+                <div class="blog-summary">
+                    <p>Subject:{{ data.subject }}</p>
+                    <p>->:{{ data.description }}</p>
+                </div><a href="{{data.links}}">
+                    <p>Link:{{ data.links}}</p>
+                </a>
+                <div class="blog-tags">
+                    
+                </div>
+            </div>
+
+            <div class="blog-footer">
+                <ul>
+                    <li class="published-date">Time:{{ data.post_time }}</li>
+                    <li class="comments"><a href="#"><svg class="icon-bubble">
+                                <use xlink:href="#icon-bubble"></use>
+                            </svg><span class="numero">8</span></a></li>
+                    <li class="shares"><a href="#"><svg class="icon-star">
+                                <use xlink:href="#icon-star"></use>
+                            </svg><span class="numero">3</span></a></li>
+                </ul>
+            </div>
+
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <!-- <div id="myfeed" class="feed1 gone">
 
         <div class="feed">
             <div class="outerfeedbox">
@@ -388,9 +601,9 @@
                 {% endfor %}
             </div>
         </div>
-    </div>
+    </div> -->
     <video id="videoElement" style="display: none;"></video>
-
+    <script src="{{ url_for('static', filename='gesture.js') }}"></script>
     <script src="../static/gesture.js"></script>
     <script src="../static/dropdown.js"></script>
 
@@ -402,23 +615,23 @@
             var cancelBtn = document.getElementById('cancel-btn');
             var postForm = document.getElementById('show');
             var card = document.getElementById('card');
-            var postbtn=document.getElementById('post-btn')
+            var postbtn = document.getElementById('post-btn')
             cancelBtn.addEventListener('click', function () {
                 card.classList.add("gone")
                 // Redirect to feed page
             });
             postForm.addEventListener('click', function () {
                 card.classList.remove("gone")
-               
+
                 // Redirect to feed page
             });
             postbtn.addEventListener('click', () => {
                 setTimeout(() => {
-                    
+
                     location.href = location.href;
-                }, 2000); 
+                }, 2000);
             });
-            
+
 
 
         })

@@ -534,3 +534,96 @@ CHOICES = [
     'Marine biology', 'Coral reef conservation', 'Deep-sea diving', 'Underwater photography',
     'Marine conservation', 'Bird photography', 'Bird watching'
 ]
+
+
+
+.feed1 {
+            background-color: rgb(17, 78, 73);
+            margin-top: 100px;
+            width: 56%;
+            margin-left: 22%;
+            margin-right: 22%;
+            border: solid 2px rgb(132, 132, 132);
+            box-shadow: rgba(17, 111, 140, 0.56) 0px 22px 70px 4px;
+
+        }
+
+
+        .feed {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 20px;
+            align-items: center;
+        }
+
+        .outerfeedbox {
+            width: 80%;
+            height: max-content;
+        }
+
+        .feedbox {
+            border: solid 4px rgb(149, 176, 182);
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+            backdrop-filter: blur(6px) saturate(110%);
+            -webkit-backdrop-filter: blur(6px) saturate(110%);
+            background-color: rgba(25, 11, 55, 0.6);
+            border-radius: 12px;
+            border: 4px solid rgba(244, 244, 244, 0.125);
+
+        }
+
+        .feed h1 {
+            padding: 2px;
+
+            font-size: 24px;
+            color: #333;
+        }
+
+        .feed h2 {
+            padding: 2px;
+
+            font-size: 20px;
+            color: #555;
+        }
+
+        .feed p {
+            padding: 2px;
+
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .feed p:last-child {
+            padding: 2px;
+            margin-bottom: 20px;
+        }
+
+        .feed a {
+            padding: 0px;
+
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        .feed a:hover {
+            color: #0056b3;
+        }
+
+        h4,
+        h3 {
+            color: #777;
+        }
+
+        .gesture-button {
+            width: 80px;
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            border-radius: 10px;
+
+        }
