@@ -22,7 +22,12 @@ app.secret_key = 'your_secret_key'
 #notfiaction database
 db = client['notice_system']
 notifications_collection = db['notifications']
+#poll's DATABaSE
+client = MongoClient('mongodb://localhost:27017/')
+db = client['college_social']
+polls_collection = db['polls']
 
+##################################################################################################################################
 app.config["MONGO_URI"] = "mongodb://localhost:27017/interests"
 mongo = PyMongo(app)
 
@@ -917,6 +922,56 @@ def logout():
 @app.route('/connect')
 def connect():
     return render_template('connect_people.html')
+######################################################## POLL PAGE   ###########################################
+@app.route('/pollpage')
+def index3():
+    user_id = session.get('user_id')
+    polls = polls_collection.find()
+    return render_template('polls_page.html', polls=polls,userid=user_id)
+
+@app.route('/create_poll', methods=['GET', 'POST'])
+def create_poll():
+  user_id = session.get('user_id')
+  if user_id:
+        user = users_collection.find_one({'_id': ObjectId(user_id)})
+        
+        if request.method == 'POST':
+         question = request.form['question']
+         options = request.form.getlist('option')
+
+        # Insert the new poll into the database
+         poll_data = {
+            "username": user.get('username'),
+            'user_id': user_id,
+            'question': question,
+            'options': [{ 'option': option, 'votes': 0 } for option in options],
+            'polled':[]
+        }
+         polls_collection.insert_one(poll_data)
+         return redirect(url_for('index3'))
+        return render_template('create_poll.html')
+
+@app.route('/vote/<poll_id>', methods=['POST'])
+def vote(poll_id):
+    user_id = session.get('user_id')
+    option_index = int(request.form['option'])
+    poll = polls_collection.find_one({ '_id': ObjectId(poll_id) })
+    
+    # Increment the votes for the selected option
+    polls_collection.update_one(
+        { '_id': ObjectId(poll_id), 'options.option': poll['options'][option_index]['option'] },
+        { '$inc': { f'options.{option_index}.votes': 1 } },  
+    )
+    polls_collection.update_one(
+        { '_id': ObjectId(poll_id), 'polled': { '$exists': False } },
+        { '$set': { 'polled': [] } }
+    )
+    polls_collection.update_one(
+        { '_id': ObjectId(poll_id) },
+        { '$push': { 'polled': user_id } }
+    )
+    
+    return redirect(url_for('index3'))
 ############################################################# UNDER WORKING  
 @app.route('/profile_page')
 def dashboard():

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Social Polls</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>College Social Polls</h1>
+    <a href="/create_poll">Create Poll</a>
+
+    <div id="polls">
+        {% for poll in polls %}
+        <div class="poll">
+            <h2>{{ poll.question }}</h2>
+            <form action="/vote/{{ poll._id }}" method="post">
+                {% for option in poll.options %}
+                <input type="radio" name="option" value="{{ loop.index0 }}">
+                {{ option.option }} ({{ option.votes }} votes)
+                <br>
+                {% endfor %}
+                <button type="submit">Vote</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="polls">
+        {% for poll in polls %}
+        {% if user_id in poll.polled %}
+
+        <div class="poll">
+            <h2>{{ poll.question }}</h2>
+
+            {% for option in poll.options %}
+
+            {{ option.option }} ({{ option.votes }} votes)
+            <br>
+            {% endfor %}
+            
+        </div>
+        {% else %}
+        <div class="poll">
+            <h2>{{ poll.question }}</h2>
+            <form action="/vote/{{ poll._id }}" method="post">
+                {% for option in poll.options %}
+                <input type="radio" name="option" value="{{ loop.index0 }}">
+                {{ option.option }} ({{ option.votes }} votes)
+                <br>
+                {% endfor %}
+                <button type="submit">Vote</button>
+            </form>
+        </div>
+        {% endif %}
+       
+        {% endfor %}
+    </div>
+
+
+
+
+    <script src=""></script>
+</body>
+
+</html>
