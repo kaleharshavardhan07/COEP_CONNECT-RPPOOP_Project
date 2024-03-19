@@ -627,3 +627,26 @@ CHOICES = [
             border-radius: 10px;
 
         }
+
+
+        poll data
+
+
+        <!-- 
+    <div id="polls">
+        {% for poll in polls %}
+        <p>User ID: {{ userid }}</p>
+        <p>Polled: {{ poll.polled }}</p>
+        <div class="poll">
+            <h2>{{ poll.question }}</h2>
+            <form action="/vote/{{ poll._id }}" method="post">
+                {% for option in poll.options %}
+                <input type="radio" name="option" value="{{ loop.index0 }}">
+                {{ option.option }} ({{ option.votes }} votes)
+                <br>
+                {% endfor %}
+                <button type="submit">Vote</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div> -->

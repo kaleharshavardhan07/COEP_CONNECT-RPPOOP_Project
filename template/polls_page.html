@@ -5,64 +5,194 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Social Polls</title>
-    <link rel="stylesheet" href="styles.css">
+     <style>
+        body{
+            background-color: #555558;
+        }
+        h1{color: #7ef4ff;
+            font-size: 3rem;
+            font-weight: 700;
+            font-style:normal;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+        #bottone1 {
+            padding-left: 33px;
+            padding-right: 33px;
+            padding-bottom: 16px;
+            padding-top: 16px;
+            border-radius: 9px;
+            background: #d5f365;
+            border: none;
+            font-family: inherit;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.4s;
+           }
+           
+           #bottone1:hover {
+            box-shadow: 7px 5px 56px -14px #C3D900;
+           }
+           
+           #bottone1:active {
+            transform: scale(0.97);
+            box-shadow: 7px 5px 56px -10px #05144e;
+           }
+           #polls{
+            background-color: rgb(204, 195, 141);
+         
+            margin: 10px;
+            border: 5px solid grey;
+            
+           }
+           .poll{
+            background-color: antiquewhite;
+            width: 70%;
+            margin: 5px;
+            border: 4px solid rgb(65, 37, 37);
+            padding: 5px;
+           }
+           h2{
+            font-size: 2rem;
+            margin-bottom: 8px;
+            border: 2px solid rgb(71, 60, 60);
+            padding: 4px;
+            background-color: #929292;
+           }
+           h3{font-size: 1.1rem;
+            margin: 0%;
+            margin-bottom: 4px;
+            border: 2px solid rgb(94, 86, 86);
+            padding: 4px;
+            background-color: #929292;}
+
+
+/* CSS */
+.button-7 {
+  background-color: #0095ff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.button-7:hover,
+.button-7:focus {
+  background-color: #07c;
+}
+
+.button-7:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.button-7:active {
+  background-color: #0064bd;
+  box-shadow: none;
+}
+.gone{
+    display: none;
+}
+     </style>
 </head>
 
 <body>
-    <h1>College Social Polls</h1>
-    <a href="/create_poll">Create Poll</a>
+    <button id="bottone1"> <a href="/create_poll">Create Poll</a></button> 
+
+   <center> <h1>College Social Polls</h1>
+    <button style="background-color: #7ef4ff; margin-right:50px" class="newpoll1" id="bottone1"> NEW POLLS</button> 
+    <button style="background-color: #7ef4ff;" class="polled1" id="bottone1">POLLED POLLS</button> 
+
 
     <div id="polls">
         {% for poll in polls %}
-        <div class="poll">
-            <h2>{{ poll.question }}</h2>
-            <form action="/vote/{{ poll._id }}" method="post">
-                {% for option in poll.options %}
-                <input type="radio" name="option" value="{{ loop.index0 }}">
-                {{ option.option }} ({{ option.votes }} votes)
-                <br>
-                {% endfor %}
-                <button type="submit">Vote</button>
-            </form>
-        </div>
-        {% endfor %}
-    </div>
 
-    <div id="polls">
-        {% for poll in polls %}
-        {% if user_id in poll.polled %}
-
-        <div class="poll">
+        <p>User ID: {{ userid }}</p>
+        <p>Polled: {{ poll.polled }}</p>
+        {% if userid|string in poll.polled %}
+        <div class="poll polled gone">
             <h2>{{ poll.question }}</h2>
 
             {% for option in poll.options %}
 
-            {{ option.option }} ({{ option.votes }} votes)
+           <h3>{{ option.option }} ({{ option.votes }} votes)</h3> 
             <br>
             {% endfor %}
-            
+
         </div>
         {% else %}
-        <div class="poll">
+        <div class="poll newpoll">
             <h2>{{ poll.question }}</h2>
             <form action="/vote/{{ poll._id }}" method="post">
                 {% for option in poll.options %}
-                <input type="radio" name="option" value="{{ loop.index0 }}">
+               <h3> <input type="radio" name="option" value="{{ loop.index0 }}">
                 {{ option.option }} ({{ option.votes }} votes)
-                <br>
+                </h3>
                 {% endfor %}
-                <button type="submit">Vote</button>
+                <button class="button-7" type="submit">Vote</button>
             </form>
         </div>
         {% endif %}
-       
+
         {% endfor %}
     </div>
+    <!-- <div id="polls">
+        {% for poll in polls %}
+        <p>User ID: {{ user_id }}</p>
+        <p>Polled: {{ poll.polled }}</p>
+        {%endfor%}
+    </div> -->
 
+</center>
+<script>document.addEventListener('DOMContentLoaded', function () {
+    var allpost = document.querySelectorAll('.newpoll1');
+    var mypost = document.querySelectorAll('.polled1');
+    var allfeeds = document.querySelectorAll('.newpoll'); // Change here
+    var myfeeds = document.querySelectorAll('.polled'); // Change here
 
+    mypost.forEach(function(button) {
+        button.addEventListener('click', function () {
+            myfeeds.forEach(function(feed) {
+                feed.classList.remove("gone");
+            });
+            allfeeds.forEach(function(feed) {
+                feed.classList.add("gone");
+            });
+        });
+    });
 
+    allpost.forEach(function(button) {
+        button.addEventListener('click', function () {
+            allfeeds.forEach(function(feed) {
+                feed.classList.remove("gone");
+            });
+            myfeeds.forEach(function(feed) {
+                feed.classList.add("gone");
+            });
+        });
+    });
+});
 
+</script>
     <script src=""></script>
+
 </body>
 
 </html>
