@@ -1,29 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notifications</title>
-</head>
-<body>
-    <h1>Notifications</h1>
-    <form action="/send_request" method="POST">
-        <label for="receiver_id">Send Connection Request:</label>
-        <input type="text" id="receiver_id" name="receiver_id" required>
-        <button type="submit">Send Request</button>
-    </form>
+    <title>Pending Requests</title>
+    <style>
+        html{
+            background-color: antiquewhite;
+        }
+        .submitbtn {
+            display: inline;
+            height: 30px;
+            border-radius: 5px;
+            color: black;
+            background-color: lawngreen;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
 
-    <h2>Notifications</h2>
-    <form action="/mark_as_read" method="POST">
-        <ul>
-            {% for notification in notifications %}
-                <li>
-                    <input type="checkbox" name="notification_ids" value="{{ notification._id }}">
-                    {{ notification.message }}
-                </li>
-            {% endfor %}
-        </ul>
-        <button type="submit">Mark as Read</button>
-    </form>
+        .username {
+            display: inline;
+        }
+
+        form {
+            display: inline;
+        }
+
+        h4 {
+            display: inline;
+            padding: 20px;
+        }
+
+        .main {
+            border: 2px solid;
+            height: 50px;
+            width: 55%;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            justify-content: space-evenly;
+            margin: 25px 0;
+            background-color: azure;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Pending Requests</h2>
+    <ul>
+        {% for sender_id in sender_ids %}
+        <li style="list-style-type: none;">
+            {% if sender_id in user_info %}
+            <div class="main">
+                <h2 class="username">{{ user_info[sender_id]['username'] }} </h1>
+                    <h4>{{ user_info[sender_id]['year'] }}
+                        {{ user_info[sender_id]['branch'] }} engineering student</h4>
+                    <!-- <br> -->
+                    <form action="/mark_as_read" method="post">
+                        <input type="hidden" name="sender_id" value="{{ sender_id }}">
+                        <input type="submit" value="Accept Request" class="submitbtn">
+                    </form>
+            </div>
+            {% else %}
+            Connection request from: Unknown User ({{ sender_id }})
+            <form action="/mark_as_read" method="post">
+                <input type="hidden" name="sender_id" value="{{ sender_id }}">
+                <input type="submit" value="Accept Request">
+            </form>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
 </body>
+
 </html>
