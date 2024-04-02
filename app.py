@@ -902,7 +902,7 @@ def main_feed():
         flash('You need to login first.', 'error')
         return redirect(url_for('login')) 
     
-############################################################## OTHER's PRIFILE PAGE #####################################################################
+############################################################## OTHER's PROFILE PAGE #####################################################################
        
 @app.route('/dashboard/<user_id1>')
 def dashboard1(user_id1):
@@ -922,7 +922,7 @@ def logout():
 @app.route('/connect')
 def connect():
     return render_template('connect_people.html')
-######################################################## POLL PAGE   ###########################################
+######################################################## POLL PAGE   ########################################################################################
 @app.route('/pollpage')
 def index3():
     user_id = session.get('user_id')
