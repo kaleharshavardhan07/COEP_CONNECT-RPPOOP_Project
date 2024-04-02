@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for,jsonify,session,flash
+from flask import session
 from pymongo import MongoClient
 from bson import ObjectId  
 from datetime import datetime
@@ -588,7 +589,8 @@ CHOICES = [
 
 
 ################################################## TO CONNECT ROUTE ####################################################################
-@app.route('/connect', methods=['POST','GET'])
+
+@app.route('/connect', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
         requirements = request.form.getlist('requirement')
@@ -598,37 +600,37 @@ def index():
     
     all_users_interests = []
     all_user_ids = []
+    all_user_data = []  # Store all user data including username, branch, and year
+    
     for user_data in mongo.db.user_interests.find():
-        all_user_ids.append(user_data['_id'])
-        interests = [user_data[choice] for choice in CHOICES]
-        all_users_interests.append(interests)
+        user_id = user_data.get('_id')
+        if user_id:
+            all_user_ids.append(user_id)
+            user_info = users_collection.find_one({'_id': user_id})
+            if user_info:
+                username = user_info.get('username', 'Unknown')
+                branch = user_info.get('branch', 'Unknown')
+                year = user_info.get('year', 'Unknown')
+            else:
+                username, branch, year = 'Unknown', 'Unknown', 'Unknown'
+            all_user_data.append({'user_id': user_id, 'username': username, 'branch': branch, 'year': year})
+            interests = [user_data[choice] for choice in CHOICES]
+            all_users_interests.append(interests)
+    
     all_users_interests = np.array(all_users_interests)
     similarities = cosine_similarity([user_requirements], all_users_interests)[0]
-    compatible_users_data = [{'user_id': user_id, 'similarity': similarity} for user_id, similarity in zip(all_user_ids, similarities)]
+    
+    compatible_users_data = [{'user_id': user['user_id'], 'username': user['username'], 'branch': user['branch'], 'year': user['year'], 'similarity': similarity} 
+                             for user, similarity in zip(all_user_data, similarities)]
     compatible_users_data.sort(key=lambda x: x['similarity'], reverse=True)
+    
     return render_template('connect_people.html', compatible_users=compatible_users_data)
 
-@app.route('/submit', methods=['POST'])
-def submit1():
-    interests = request.form.getlist('interest')
-    user_data = {choice: 0 for choice in CHOICES}
-    for interest in interests:
-        if interest in CHOICES:
-            user_data[interest] = 1
-    user_id = session['user_id']
-    user_data['_id'] = user_id
-    mongo.db.user_interests.insert_one(user_data)
-    return redirect('/profile')
 
-######################################################  NOTIFICATION PANNEL ################################################################
-@app.route('/Send_notification')
-def notify():
-    return render_template('notifications.html')
-
-@app.route('/send_request', methods=['POST'])
+@app.route('/addpeople', methods=['POST', 'GET'])
 def send_request():
     sender_id = session['user_id']
-    receiver_id = request.form['receiver_id']
+    receiver_id = request.form['user_id']
     # Save connection request in the database
     notification = {
         'sender_id': sender_id,
@@ -638,21 +640,103 @@ def send_request():
         'timestamp': datetime.utcnow()
     }
     notifications_collection.insert_one(notification)
-    return 'Connection request sent successfully'
+    return redirect('/connect')
+
+from flask import render_template
+from bson.objectid import ObjectId  # Import this if user_id is stored as ObjectId
 
 @app.route('/notifications')
-def notifications():
+def notify():
     user_id = session['user_id']
-    # Query unread notifications for the user
-    notifications = notifications_collection.find({'receiver_id': user_id, 'is_read': False})
-    return render_template('notifications.html', notifications=notifications)
+    print(user_id)
+    
+    # Query unread connection requests for the user
+    connection_requests = notifications_collection.find({'receiver_id': user_id, 'is_read': False, 'message': 'Connection Request'})
+    
+    # Extract sender IDs from the connection requests
+    sender_ids = [str(request['sender_id']) for request in connection_requests]  # Assuming sender_id is stored as ObjectId
+    
+    # Query the users database to get usernames, branches, and years for sender_ids
+    user_info = {}
+    for sender_id in sender_ids:
+        user = users_collection.find_one({'_id': ObjectId(sender_id)})  # Assuming users_collection is your users database collection
+        if user:
+            user_info[sender_id] = {
+                'username': user['username'],
+                'branch': user['branch'],
+                'year': user['year']
+            }
+    
+    return render_template('notifications.html', sender_ids=sender_ids, user_info=user_info)
+
+
 
 @app.route('/mark_as_read', methods=['POST'])
 def mark_as_read():
-    notification_ids = request.form.getlist('notification_ids')
-    for notification_id in notification_ids:
-        notifications_collection.update_one({'_id': ObjectId(notification_id)}, {'$set': {'is_read': True}})
-    return 'Notifications marked as read'
+    user_id = session['user_id']
+    
+    # Get the sender_id from the form data
+    sender_id = request.form['sender_id']
+    
+    # Update the document to mark it as read
+    notifications_collection.update_one({'receiver_id': user_id, 'sender_id': sender_id, 'is_read': False, 'message': 'Connection Request'}, {'$set': {'is_read': True}})
+    
+    return redirect('/notifications')
+    
+@app.route('/submit', methods=['POST'])
+def submit1():
+    interests = request.form.getlist('interest')
+    user_data = {choice: 0 for choice in CHOICES}
+    
+    # Get the session ID
+    session_id = ObjectId(session.get('user_id'))  # Convert string back to ObjectId
+    # print(session_id)
+
+    for interest in interests:
+        if interest in CHOICES:
+            user_data[interest] = 1
+            
+    # Add the session ID to user_data
+    user_data['_id'] = session_id
+
+    # Insert user_data into the users database
+    # mongo.db.users.insert_one(user_data)
+
+    # Also insert user_data into the interests database with the same ObjectId
+    mongo.db.user_interests.insert_one(user_data)
+
+    return redirect('/profile')
+
+
+
+######################################################  NOTIFICATION PANNEL ################################################################
+# @app.route('/Send_notification')
+# def notify():
+#     return render_template('notifications.html')
+
+# @app.route('/send_request', methods=['POST'])
+# def send_request():
+#     sender_id = session['user_id']
+#     receiver_id = request.form['receiver_id']
+#     # Save connection request in the database
+#     notification = {
+#         'sender_id': sender_id,
+#         'receiver_id': receiver_id,
+#         'message': 'Connection Request',
+#         'is_read': False,
+#         'timestamp': datetime.utcnow()
+#     }
+#     notifications_collection.insert_one(notification)
+#     return 'Connection request sent successfully'
+
+# @app.route('/notifications')
+# def notifications():
+#     user_id = session['user_id']
+#     # Query unread notifications for the user
+#     notifications = notifications_collection.find({'receiver_id': user_id, 'is_read': False})
+#     return render_template('notifications.html', notifications=notifications)
+
+
 
 ################################################### CONTROL LOGOUT BY TEJAS WORKING  #####################################################
 @app.after_request
@@ -983,7 +1067,7 @@ def dashboard():
         return "User data not found"
     
     
-    
+app.secret_key = 'your_secret_key_here'
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

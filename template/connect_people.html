@@ -59,6 +59,43 @@
             font-size: 2rem;
             font-weight: 500;
         }
+        .main{
+            background-color: oldlace;
+            height: 70px;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            border-radius: 5px;
+            margin: 25px 0;
+
+        }
+        .usename{
+            color: black;
+            font-weight: 800;
+            font-size: 3rem;
+            display: inline;
+            padding: 0 10px;
+        }
+        .subInfo{
+            display: inline;
+            color: red;
+            font-weight: 500;
+            font-size: 2rem;
+        }
+        li{
+            list-style-type: none;
+        }
+        .mainBtn{
+            height: 40px;
+            width: 120px;
+            color: black;
+            font-size: 2rem;
+            border-radius: 5px;
+            background-color: #17e960;
+            display: inline;
+        }
+
     </style>
     <!-- MULTISELECT SCRIPT   -->
     <script>$(document).ready(function () {
@@ -142,7 +179,7 @@
                     
                     <h2>SELECT FEST-POSITION-POST ?</h2>
                     <div class="row d-flex justify-content-center mt-100">
-                        <div class="col-md-6"> <select class="id12" id="choices-multiple-remove-button" name="interest"
+                        <div class="col-md-6"> <select class="id12" id="choices-multiple-remove-button" name="requirement"
                                 placeholder="Select  tags" multiple>
 
                                 <option value="Zest-Accounts and Documentation-Head">Zest-Accounts and
@@ -1158,13 +1195,25 @@
                 </div>
             </div>
         </section>
-       <center> <button type="submit" class="lastBTN">Find My Connection</button></center>
-        <center> <h1>Prefered Connections</h1>
-       <ul>
-            {% for user in compatible_users %}
-                <li>User ID: {{ user.user_id }} | Similarity: {{ user.similarity }}</li>
-            {% endfor %}
-        </ul></center>
+        <center> <button type="submit" class="lastBTN">Find My Connection</button></center>
+        <center>
+            <h1>Preferred Connections</h1>
+            <ul>
+                {% for user in compatible_users %}
+                    <div class="main">
+                        <li>
+                            <h2 class="usename">{{ user.username }}</h2> <h4 class="subInfo">{{ user.year }} {{ user.branch }} Engineering Student</h4>   | <h2 class="usename">{{ '%.2f'|format(user.similarity*100) }}%</h2>
+                            <form method="post" action="/addpeople">
+                                <input type="hidden" name="user_id" value="{{ user.user_id }}">
+                                <button type="submit" name="addpeople" class="mainBtn">Connect</button>
+                            </form>
+                        </li>
+                    </div> 
+                {% endfor %}
+            </ul>
+        </center>
+        
+    
     </form>
 
     <!-- Include necessary JavaScript libraries -->
