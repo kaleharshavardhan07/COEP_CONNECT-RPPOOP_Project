@@ -17,7 +17,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/back.css">
+    <!-- <link rel="stylesheet" href="../static/back.css"> -->
+    <link rel="stylesheet" href="../static/profilecreate.css">
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
     <link rel="stylesheet"
@@ -25,25 +26,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
     <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
     <style>
-        .mt-100 {
-            margin-top: 100px
-        }
-
-        .d-flex {
-            justify-content: center;
-            margin: 0px;
-            padding: 0px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .is-open .choices__list--dropdown {
-            background: #28d0c0;
-            color: black;
-            border-color: #b7b7b7;
-        }
-    </style>
+  </style>
     <!-- MULTISELECT SCRIPT   -->
     <script>$(document).ready(function () {
 
@@ -53,6 +36,8 @@
 
 
         });</script>
+
+        
 
     <!-- FEST SCRIPT     -->
     <!-- <script>
@@ -115,15 +100,14 @@
 </head>
 
 <body>
-    <div class="noise"></div>
-    <div class="overlay"></div>
-    <div class="terminal"></div>
-    <div style="position:sticky; z-index: 1000;">
+   
+<center>
+    <div class="glass-morphism-container-hover-effect" style="position:sticky; z-index: 1000;">
         <center>
 
             <section>
                 <form action="{{url_for('submit1')}}" method="post">
-                    <h2>WHIC OF THE FOLLWING is Your Club ?</h2>
+                    <h2>WHICH OF THE FOLLWING is Your Club ?</h2>
                     <div class="row d-flex justify-content-center mt-100">
                         <div class="col-md-6"> <select class="id12" id="choices-multiple-remove-button" name="interest"
                                 placeholder="Select  tags" multiple>
@@ -157,7 +141,7 @@
                     </div>
 
 
-                    <h2>WHIC OF THE FOLLWING is Your fest ?</h2>
+                    <h2>WHICH OF THE FOLLWING is Your fest ?</h2>
                     <div class="row d-flex justify-content-center mt-100">
                         <div class="col-md-6"> <select class="id12" id="choices-multiple-remove-button" name="interest"
                                 placeholder="Select  tags" multiple>
@@ -1218,7 +1202,7 @@
                         </select> </div>
                 </div>
                 <center>
-                    <button id="getSelectedClubs" type="submit">Submit</button>
+                    <button class="button-15" id="getSelectedClubs" type="submit">Submit</button>
                 </center>
                 </form>
             </section>
@@ -1284,12 +1268,19 @@
          -->
 
         <center>
-            <a href="{{ url_for('login')}}"><button>
+            <a href="{{ url_for('login')}}"><button class="button-15">
                     Proceed to sign in
                 </button>
         </center></a>
     </div>
-
+</center>
+    <script>document.querySelector('.glass-morphism-container-hover-effect').onmousemove = (e) => {
+        const x = e.pageX - e.target.offsetLeft
+        const y = e.pageY - e.target.offsetTop
+        e.target.style.setProperty('--x', `${ x }px`)
+        e.target.style.setProperty('--y', `${ y }px`)
+       
+      }</script>
 
     <script>document.getElementById("getSelectedClubs").addEventListener("click", function () {
             var btn = document.getElementById('getSelectedClubs');
