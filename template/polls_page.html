@@ -2,305 +2,722 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Social Polls</title>
-     <!-- <style>
-        body{
-            background-color: #555558;
-        }
-        h1{color: #7ef4ff;
-            font-size: 3rem;
-            font-weight: 700;
-            font-style:normal;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  <meta charset="UTF-8">
 
-        }
-        #bottone1 {
-            padding-left: 33px;
-            padding-right: 33px;
-            padding-bottom: 16px;
-            padding-top: 16px;
-            border-radius: 9px;
-            background: #d5f365;
-            border: none;
-            font-family: inherit;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.4s;
-           }
-           
-           #bottone1:hover {
-            box-shadow: 7px 5px 56px -14px #C3D900;
-           }
-           
-           #bottone1:active {
-            transform: scale(0.97);
-            box-shadow: 7px 5px 56px -10px #05144e;
-           }
-           #polls{
-            background-color: rgb(204, 195, 141);
-         
-            margin: 10px;
-            border: 5px solid grey;
-            
-           }
-           .poll{
-            background-color: antiquewhite;
-            width: 70%;
-            margin: 5px;
-            border: 4px solid rgb(65, 37, 37);
-            padding: 5px;
-           }
-           h2{
-            font-size: 2rem;
-            margin-bottom: 8px;
-            border: 2px solid rgb(71, 60, 60);
-            padding: 4px;
-            background-color: #929292;
-           }
-           h3{font-size: 1.1rem;
-            margin: 0%;
-            margin-bottom: 4px;
-            border: 2px solid rgb(94, 86, 86);
-            padding: 4px;
-            background-color: #929292;}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Social Polls</title>
+  <link rel="stylesheet" href="../static/dropdown.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+
+    body {
+      background: #000;
+      background-size: cover;
+      background-position: center;
+      font-family: "Open Sans", sans-serif;
+    }
 
 
-/* CSS */
-.button-7 {
-  background-color: #0095ff;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.15385;
-  margin: 0;
-  outline: none;
-  padding: 8px .8em;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  white-space: nowrap;
-}
+    .container {
+      width: 60%;
+      height: 100%;
+      background-color: aliceblue;
+    }
 
-.button-7:hover,
-.button-7:focus {
-  background-color: #07c;
-}
+    .post-container {
+      z-index: 1000;
+      color: #000;
+      position: fixed;
+      top: 20%;
+      margin-left: 20%;
+      margin-right: 25%;
+      width: 50%;
 
-.button-7:focus {
-  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
-}
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-.button-7:active {
-  background-color: #0064bd;
-  box-shadow: none;
-}
-.gone{
-    display: none;
-}
-     </style> -->
-     <style>
-        body{
-            background: #217483b5;
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        }
-        button {
-          background-image: linear-gradient(#42A1EC, #0070C9);
-          border: 1px solid #0077CC;
-          border-radius: 4px;
-          box-sizing: border-box;
-          color: #FFFFFF;
-          cursor: pointer;
-          direction: ltr;
-          
-          font-family: "SF Pro Text","SF Pro Icons","AOS Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
-          font-size: 17px;
-          font-weight: 400;
-          letter-spacing: -.022em;
-          line-height: 1.47059;
-          min-width: 30px;
-          overflow: visible;
-          padding: 4px 15px;
-          text-align: center;
-          vertical-align: baseline;
-          user-select: none;
-          -webkit-user-select: none;
-          touch-action: manipulation;
-          white-space: nowrap;
-        }
-        
-        button:disabled {
-          cursor: default;
-          opacity: .3;
-        }
-        
-        button:hover {
-          background-image: linear-gradient(#51A9EE, #147BCD);
-          border-color: #1482D0;
-          text-decoration: none;
-        }
-        
-        button:active {
-          background-image: linear-gradient(#3D94D9, #0067B9);
-          border-color: #006DBC;
-          outline: none;
-        }
-        
-        button:focus {
-          box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
-          outline: none;
-        }
-        .button-7 {
-        background-color: #0095ff;
-        border: 1px solid transparent;
-        border-radius: 3px;
-        box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
-        box-sizing: border-box;
-        color: #fff;
-        cursor: pointer;
-        display: inline-block;
-        font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
-        font-size: 13px;
-        font-weight: 400;
-        line-height: 1.15385;
-        margin: 0;
-        outline: none;
-        padding: 8px .8em;
-        position: relative;
-        text-align: center;
-        text-decoration: none;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        vertical-align: baseline;
-        white-space: nowrap;
+    .post-header h1 {
+      margin: 0;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    #post-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #cancel-btn {
+      background-color: #dc3545;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .gone {
+      z-index: -100;
+      display: none;
+    }
+
+
+    .header {
+      width: 90vw;
+      margin: auto;
+      position: fixed;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #bfbbbb;
+      padding: 10px 20px;
+    }
+
+    .header__logo {
+      font-size: 18px;
+    }
+
+    .navbar {
+      display: flex;
+    }
+
+    .navbar__menu {
+      list-style-type: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar__item {
+      margin-right: 10px;
+    }
+
+    .navbar__link {
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      align-items: center;
+      padding: 5px 10px;
+    }
+
+    .navbar__link:hover {
+      background-color: #ddd;
+    }
+
+    .navbar__link span {
+      margin-left: 5px;
+    }
+
+    [data-feather] {
+      margin-right: 5px;
+    }
+  </style>
+  <style>
+    body {
+      background: #217483b5;
+
+    }
+
+    #bottone1 {
+      position: relative;
+      top: 80px;
+
+
+
+    }
+
+    button {
+      background-image: linear-gradient(#42A1EC, #0070C9);
+      border: 1px solid #0077CC;
+      border-radius: 4px;
+      box-sizing: border-box;
+      color: #FFFFFF;
+      cursor: pointer;
+      direction: ltr;
+
+      font-family: "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      letter-spacing: -.022em;
+      line-height: 1.47059;
+      min-width: 30px;
+      overflow: visible;
+      padding: 4px 15px;
+      text-align: center;
+      vertical-align: baseline;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      white-space: nowrap;
+    }
+
+    button:disabled {
+      cursor: default;
+      opacity: .3;
+    }
+
+    button:hover {
+      background-image: linear-gradient(#51A9EE, #147BCD);
+      border-color: #1482D0;
+      text-decoration: none;
+    }
+
+    button:active {
+      background-image: linear-gradient(#3D94D9, #0067B9);
+      border-color: #006DBC;
+      outline: none;
+    }
+
+    button:focus {
+      box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
+      outline: none;
+    }
+
+    .button-7 {
+      background-color: #0095ff;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.15385;
+      margin: 0;
+      outline: none;
+      padding: 8px .8em;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: baseline;
+      white-space: nowrap;
+    }
+
+    .button-7:hover,
+    .button-7:focus {
+      background-color: #07c;
+    }
+
+    .button-7:focus {
+      box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+    }
+
+    .button-7:active {
+      background-color: #0064bd;
+      box-shadow: none;
+    }
+
+    .gone {
+      display: none;
+    }
+
+    .poll {
+      background: rgba(188, 115, 115, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(1.5px);
+      -webkit-backdrop-filter: blur(1.5px);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 5%;
+      width: 80%;
+      max-width: 400px;
+
+    }
+
+    .poll:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    a {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <style>
+    a {
+      color: #4d4d4d;
+    }
+
+    h1 {
+      font-size: 1.2rem;
+      font-weight: 100;
+    }
+
+    .feed1 {
+      margin-top: 100px;
+    }
+
+    body {
+      background: #e5ded8;
+      box-sizing: border-box;
+    }
+
+    .blog-container {
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: hsla(0deg, 0%, 0%, 0.2) 0 4px 2px -2px;
+      font-family: "adelle-sans", sans-serif;
+      font-weight: 100;
+      margin: 40px auto;
+      width: 20rem;
+    }
+
+    @media screen and (min-width: 480px) {
+      .blog-container {
+        width: 28rem;
       }
-      
-      .button-7:hover,
-      .button-7:focus {
-        background-color: #07c;
-      }
-      
-      .button-7:focus {
-        box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
-      }
-      
-      .button-7:active {
-        background-color: #0064bd;
-        box-shadow: none;
-      }
-      .gone{
-          display: none;
-      }
-        .poll{
-            background: rgba( 188, 115, 115, 0.1 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 1.5px );
--webkit-backdrop-filter: blur( 1.5px );
-border-radius: 10px;
-border: 1px solid rgba( 255, 255, 255, 0.18 );
-padding: 5%;
-width: 80%;
-max-width: 400px;
+    }
 
-        }
-        .poll:hover {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-     </style>
+    @media screen and (min-width: 767px) {
+      .blog-container {
+        width: 40rem;
+      }
+    }
+
+    @media screen and (min-width: 959px) {
+      .blog-container {
+        width: 50rem;
+      }
+    }
+
+    .blog-container a {
+      color: black;
+      text-decoration: none;
+      transition: 0.25s ease;
+    }
+    .blog-header h2{
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      padding-top: 10px;
+
+    }
+
+    .blog-container a:hover {
+      border-color: #ff4d4d;
+      color: #ff4d4d;
+    }
+
+    .blog-cover {
+      background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/yosemite-3.jpg");
+      background-size: cover;
+      border-radius: 5px 5px 0 0;
+      height: 15rem;
+      box-shadow: inset hsla(0deg, 0%, 0%, 0.2) 0 64px 64px 16px;
+    }
+
+    .blog-author,
+    .blog-author--no-cover {
+      margin: 0 auto;
+      padding-top: 0.125rem;
+      width: 80%;
+    }
+
+    .blog-author h3::before,
+    .blog-author--no-cover h3::before {
+      background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg");
+      background-size: cover;
+      border-radius: 50%;
+      content: " ";
+      display: inline-block;
+      height: 32px;
+      margin-right: 0.5rem;
+      position: relative;
+      top: 8px;
+      width: 32px;
+    }
+
+    .blog-author h3 {
+      color: #fff;
+      font-weight: 100;
+    }
+
+    .blog-author--no-cover h3 {
+      color: #999999;
+      font-weight: 100;
+    }
+
+    .blog-body {
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    .video-body {
+      height: 100%;
+      width: 100%;
+    }
+
+    .blog-title h1 a {
+      color: #333;
+      font-weight: 100;
+    }
+
+    .blog-summary p {
+      color: #4d4d4d;
+    }
+
+    .blog-tags ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .blog-tags li+li {
+      margin-left: 0.5rem;
+    }
+
+    .blog-tags a {
+      border: 1px solid #999999;
+      border-radius: 3px;
+      color: #999999;
+      font-size: 0.75rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      letter-spacing: 1px;
+      padding: 0 0.5rem;
+      text-align: center;
+      text-transform: uppercase;
+      white-space: nowrap;
+      width: 5rem;
+    }
+
+    .blog-footer {
+      border-top: 1px solid #e6e6e6;
+      margin: 0 auto;
+      padding-bottom: 0.125rem;
+      width: 80%;
+    }
+
+    .blog-footer ul {
+      list-style: none;
+      display: flex;
+      flex: row wrap;
+      justify-content: flex-end;
+      padding-left: 0;
+    }
+
+    .blog-footer li:first-child {
+      margin-right: auto;
+    }
+
+    .blog-footer li+li {
+      margin-left: 0.5rem;
+    }
+
+    .blog-footer li {
+      color: #999999;
+      font-size: 0.75rem;
+      height: 1.5rem;
+      letter-spacing: 1px;
+      line-height: 1.5rem;
+      text-align: center;
+      text-transform: uppercase;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .blog-footer li a {
+      color: #999999;
+    }
+
+    .comments {
+      margin-right: 1rem;
+    }
+
+    .published-date {
+      border: 1px solid #999999;
+      border-radius: 3px;
+      padding: 0 0.5rem;
+    }
+
+    .numero {
+      position: relative;
+      top: -0.5rem;
+    }
+
+    .icon-star,
+    .icon-bubble {
+      fill: #999999;
+      height: 24px;
+      margin-right: 0.5rem;
+      transition: 0.25s ease;
+      width: 24px;
+    }
+
+    .icon-star:hover,
+    .icon-bubble:hover {
+      fill: #ff4d4d;
+    }
+  </style>
 </head>
 
 <body>
-    <button id="bottone1"> <a href="/create_poll">Create Poll</a></button> 
+  <div class="header">
+    <div class="header__logo">
+      <strong>COEP CONNECT</strong>
+    </div>
+    <nav class="navbar">
+      <ul class="navbar__menu">
 
-   <center> <h1>College Social Polls</h1>
-    <button style="background-color: #7ef4ff; margin-right:50px" class="newpoll1" id="bottone1"> NEW POLLS</button> 
-    <button style="background-color: #7ef4ff;" class="polled1" id="bottone1">POLLED POLLS</button> 
+        <li class="navbar__item">
+          <a href="{{url_for('main_feed')}}" id="allpost" class="navbar__link"><i
+              data-feather="message-square"></i><span>FEED</span></a>
+        </li>
+        <li class="navbar__item">
+          <a href="#" id="mypost" class="navbar__link"><i data-feather="users"></i><span>MY-POST</span></a>
+        </li>
+        <li class="navbar__item">
+          <a href="#" id="show" class="navbar__link"><i data-feather="settings"></i><span>ADD-POST</span></a>
+        </li>
+        <li class="navbar__item">
+          <a href="{{url_for('connect')}}" class="navbar__link"><i data-feather="settings"></i><span>CONNECT</span></a>
+        </li>
+        <li class="navbar__item">
+          <a href="{{url_for('index3')}}" class="navbar__link"><i data-feather="archive"></i><span>POLL'S</span></a>
+        </li>
+        <li class="navbar__item">
+          <a href="#" class="navbar__link"><i data-feather="help-circle"></i><span>HELPDISK</span></a>
+        </li>
+
+        <li class="navbar__item">
+          <a href="{{url_for('notify')}}" class="navbar__link"><i
+              data-feather="folder"></i><span>NOTIFICATION</span></a>
+        </li>
+        <div class="profile-dropdown">
+          <div onclick="toggle()" class="profile-dropdown-btn">
+            <div class="profile-img">
+              <i class="fa-solid fa-user"></i>
+              <i class="fa-solid fa-circle"></i>
+            </div>
+
+            <span>Me
+              <i class="fa-solid fa-angle-down"></i>
+            </span>
+          </div>
+
+          <ul class="profile-dropdown-list">
+            <li class="profile-dropdown-list-item">
+              <a href="{{url_for('myprof')}}">
+                <i class="fa-regular fa-user"></i>
+                See Profile
+              </a>
+            </li>
+
+            <li class="profile-dropdown-list-item">
+              <a href="{{url_for('myinter')}}">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                My Interest
+              </a>
+            </li>
+
+            <li class="profile-dropdown-list-item">
+              <a href="{{url_for('myconnect')}}">
+                <i class="fa-solid fa-user-group"></i>
+                My connections
+              </a>
+            </li>
+            <li class="profile-dropdown-list-item">
+              <a href="{{url_for('mypass')}}">
+                <i class="fa-solid fa-lock"></i>
+                Change Password
+              </a>
+            </li>
+            <hr />
+
+            <li class="profile-dropdown-list-item">
+              <a href="{{url_for('logout')}}">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                Log out
+              </a>
+            </li>
+          </ul>
+        </div>
+      </ul>
+    </nav>
 
 
-    <div id="polls">
+  </div>
+
+  <div style="top: 50px;     position: relative;">
+    <button id="bottone1"> <a href="/create_poll">Create Poll</a></button>
+
+    <center>
+      <h1>College Social Polls</h1>
+      <button style="background-color: #7ef4ff; margin-right:50px" class="newpoll1" id="bottone1"> NEW POLLS</button>
+      <button style="background-color: #7ef4ff;" class="polled1" id="bottone1">POLLED POLLS</button>
+
+
+      <div id="polls">
         {% for poll in polls %}
 
         <p>User ID: {{ userid }}</p>
         <p>Polled: {{ poll.polled }}</p>
         {% if userid|string in poll.polled %}
-        <div class="poll polled gone">
+        <div class="blog-container polled gone">
+          <div class="blog-header">
             <h2>{{ poll.question }}</h2>
-
-            {% for option in poll.options %}
-
-           <h3>{{ option.option }} ({{ option.votes }} votes)</h3> 
-            <br>
-            {% endfor %}
+          </div>
+          {% for option in poll.options %}
+          <div class="blog-body">
+            <p>{{ option.option }} ({{ option.votes }} votes)</p>
+          </div><br>
+          {% endfor %}
 
         </div>
         {% else %}
-        <div class="poll newpoll">
+        <div class="bolg-container newpoll">
+          <div class="blog-header">
             <h2>{{ poll.question }}</h2>
-            <form action="/vote/{{ poll._id }}" method="post">
-                {% for option in poll.options %}
-               <h3> <input type="radio" name="option" value="{{ loop.index0 }}">
+          </div>
+          <form action="/vote/{{ poll._id }}" method="post">
+            {% for option in poll.options %}
+            <div class="blog-body">
+              <p> <input type="radio" name="option" value="{{ loop.index0 }}">
                 {{ option.option }} ({{ option.votes }} votes)
-                </h3>
-                {% endfor %}
-                <button class="button-7" type="submit">Vote</button>
-            </form>
+              </p>
+            </div>
+            {% endfor %}
+            <button class="button-7" type="submit">Vote</button>
+          </form>
         </div>
         {% endif %}
 
         {% endfor %}
-    </div>
-    <!-- <div id="polls">
+      </div>
+      <!-- <div id="polls">
         {% for poll in polls %}
         <p>User ID: {{ user_id }}</p>
         <p>Polled: {{ poll.polled }}</p>
         {%endfor%}
     </div> -->
 
-</center>
-<script>document.addEventListener('DOMContentLoaded', function () {
-    var allpost = document.querySelectorAll('.newpoll1');
-    var mypost = document.querySelectorAll('.polled1');
-    var allfeeds = document.querySelectorAll('.newpoll'); // Change here
-    var myfeeds = document.querySelectorAll('.polled'); // Change here
+    </center>
+  </div>
+  <script>document.addEventListener('DOMContentLoaded', function () {
+      var allpost = document.querySelectorAll('.newpoll1');
+      var mypost = document.querySelectorAll('.polled1');
+      var allfeeds = document.querySelectorAll('.newpoll'); // Change here
+      var myfeeds = document.querySelectorAll('.polled'); // Change here
 
-    mypost.forEach(function(button) {
+      mypost.forEach(function (button) {
         button.addEventListener('click', function () {
-            myfeeds.forEach(function(feed) {
-                feed.classList.remove("gone");
-            });
-            allfeeds.forEach(function(feed) {
-                feed.classList.add("gone");
-            });
+          myfeeds.forEach(function (feed) {
+            feed.classList.remove("gone");
+          });
+          allfeeds.forEach(function (feed) {
+            feed.classList.add("gone");
+          });
         });
+      });
+
+      allpost.forEach(function (button) {
+        button.addEventListener('click', function () {
+          allfeeds.forEach(function (feed) {
+            feed.classList.remove("gone");
+          });
+          myfeeds.forEach(function (feed) {
+            feed.classList.add("gone");
+          });
+        });
+      });
     });
 
-    allpost.forEach(function(button) {
-        button.addEventListener('click', function () {
-            allfeeds.forEach(function(feed) {
-                feed.classList.remove("gone");
-            });
-            myfeeds.forEach(function(feed) {
-                feed.classList.add("gone");
-            });
-        });
-    });
-});
-
-</script>
-    <script src=""></script>
+  </script>
+  <script src="../static/dropdown.js"></script>
 
 </body>
 
