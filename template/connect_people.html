@@ -13,7 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/back.css">
+    <link rel="stylesheet" href="../static/profilecreate.css">
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
     <link rel="stylesheet"
@@ -46,21 +46,21 @@
             border-color: #b7b7b7;
         }
         .lastBTN{
-            background-color: #17e960;
+            background-color: #4395d4;
             color: black;
             height: 40px;
             width: 169px;
             font-size: 1.6rem;
             font-weight: 600;
             margin: 25px 0;
-            border-radius: 5px;
+            border-radius: 15px;
         }
         option{
             font-size: 2rem;
             font-weight: 500;
         }
         .main{
-            background-color: oldlace;
+            background-color: tr;
             height: 70px;
             width: 90%;
             display: flex;
@@ -91,18 +91,15 @@
             width: 120px;
             color: black;
             font-size: 2rem;
-            border-radius: 5px;
-            background-color: #17e960;
+            border-radius: 15px;
+            background-color: #1594a0;
             display: inline;
         }
-        #mainBtn{
-            height: 40px;
-            width: 120px;
-            color: black;
-            font-size: 2rem;
-            border-radius: 5px;
-            background-color: #17e960;
-            display: inline;
+        .h1{
+            font-size: 50px;
+            font-weight: bolder;
+            font-family:'Times New Roman', Times, serif;
+            color: antiquewhite;
         }
 
     </style>
@@ -116,8 +113,9 @@
         });
     </script>
 <body>
-   <center> <h1>Find Compatible Users</h1></center>
+   <center> <h1 class="h1">Find Compatible Users</h1></center>
     <form action="/connect" method="post">
+        <center><div class="glass-morphism-container-hover-effect">
         <section>
             <center><h2>Select Your Requirements</h2></center>
             <div class="row d-flex justify-content-center mt-100">
@@ -1204,8 +1202,8 @@
                 </div>
             </div>
         </section>
-        <center> <button type="submit" class="lastBTN">Find My Connection</button></center>
-        <center>
+        <center> <button type="submit" class="lastBTN">Find My Connection</button></center></center></div>
+        <center> <div class="glass-morphism-container-hover-effect">
             <h1>Preferred Connections</h1>
             
             {% for user in compatible_users %}
@@ -1219,13 +1217,12 @@
                             </form>
                         </li>
                     </div> 
-                </ul>
-            {% endfor %}
-            
+                {% endfor %}
+            </ul></div>
         </center>
         
     
-    </form>
+    </form></div>
 
     <!-- Include necessary JavaScript libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

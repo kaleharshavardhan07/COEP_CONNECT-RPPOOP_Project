@@ -964,8 +964,19 @@ def main_feed():
     if user_id:
         user = users_collection.find_one({'_id': ObjectId(user_id)})
         datas = list(post_collection.find().sort('post_time', -1))
-
-        if request.method == 'POST':
+        return render_template('main_feed.html', datas=datas, user_id1=user_id)
+    else:
+        flash('You need to login first.', 'error')
+        return redirect(url_for('login')) 
+###################################################### CREATE POST HTML #######################################################################################
+    
+@app.route('/create_post',methods=['POST', 'GET'])
+def create_post():
+    user_id = session.get('user_id')
+    if user_id:
+      user = users_collection.find_one({'_id': ObjectId(user_id)})
+      datas = list(post_collection.find().sort('post_time', -1))
+      if request.method == 'POST':
             time = datetime.utcnow()
             ist=pytz.timezone('Asia/kolkata')
             current_time=time.astimezone(ist)
@@ -992,15 +1003,14 @@ def main_feed():
             else:
                 post_collection.insert_one(post_data)
                 flash('Post added successfully.', 'success')
-                return render_template('main_feed.html', datas=datas, user_id1=user_id)
-            return render_template('main_feed.html', datas=datas, user_id1=user_id)
-
-        else:
-            return render_template('main_feed.html', datas=datas, user_id1=user_id)
+                return redirect(url_for('main_feed'))
+                # return render_template('main_feed.html', datas=datas, user_id1=user_id)
+      else:
+             return render_template('create_post.html')
     else:
         flash('You need to login first.', 'error')
-        return redirect(url_for('login')) 
-    
+        return redirect(url_for('login'))
+
 ############################################################## OTHER's PROFILE PAGE #####################################################################
        
 @app.route('/dashboard/<user_id1>')

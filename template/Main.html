@@ -5,46 +5,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../static/mainstyle.css">
+    <!-- <link rel="stylesheet" href="../static/mainstyle.css"> -->
+    <link rel="stylesheet" href="../static/newmain.css">k
 </head>
 
 <body>
-    <div class="noise"></div>
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div id='title'>
+
+
+
+        <!-- <div class="noise"></div>
     <div class="overlay"></div>
-    <div class="terminal"></div>
+    <div class="terminal"></div> -->
 
-       <center><header class="theme-header">
-            <h1>COEP-CONNECT</h1>
-        </header></center> 
-       <center> <section id="home" class="main-content">
-            <h2>Welcome to COEP CONNECT</h2>
-        </section></center>
-        <center><section class="grp">
-            <div id="admin-login" class="login-section">
-                <h2>Login</h2>
-                <a href="{{ url_for('login')}}"> <button class="log">Log-in</button></a>
+        <center>
+            <header class="theme-header">
+                <h1 id="text3d">COEP-CONNECT</h1>
+            </header>
+        </center>
+        <center>
+            <section id="home" class="main-content">
+                <h2>Welcome to COEP CONNECT</h2>
+            </section>
+        </center>
+        <center>
+            <section class="grp">
+                <div id="admin-login" class="login-section">
+                    <h4>Login</h4>
+                    <a href="{{ url_for('login')}}"> <button class="log">Log-in</button></a>
 
-            </div>
-            <div id="admin-login" class="login-section">
-                <h2>Sign-up</h2>
-                <a href="{{ url_for('signup')}}"> <button class="log">Sign-in</button></a>
-            </div>
-        </section></center>
-      <center>
-          <section id="about-us" class="main-content">
-            <h2>About Us</h2>
-        </section>
+                </div>
+                <div id="admin-login" class="login-section">
+                    <h4>Sign-up</h4>
+                    <a href="{{ url_for('signup')}}"> <button class="log">Sign-in</button></a>
+                </div>
+            </section>
+        </center>
+        <center>
 
-        <section id="our-team" class="main-content">
-            <h2>Our Team</h2>
-            <h3>HARSHAVARDHAN KALE AND TEJAS JADHAV</h3>
-        </section></center>
 
-        <center><footer class="animated-footer">
+            <section id="our-team" class="main-content">
+                <h3>About Us </h3>
+
+            </section>
+        </center>
+        <center>
+
+
+            <section id="our-team" class="main-content">
+                <h3>Our Team</h3>
+                <p>HARSHAVARDHAN KALE AND TEJAS JADHAV</p>
+            </section>
+        </center>
+
+       <center> <footer class="animated-footer">
             <p>&copy; 2024 COEPCONNECT . All rights reserved.</p>
         </footer></center>
-    
 
+    </div>
 </body>
 
 </html>

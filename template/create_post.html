@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+
+        body {
+            background: #ffffff;
+            background-size: cover;
+            background-position: center;
+            font-family: "Open Sans", sans-serif;
+        }
+
+
+        .container {
+            width: 60%;
+            height: 100%;
+            background-color: aliceblue;
+        }
+
+        .post-container {
+            z-index: 1000;
+            color: #000;
+            position: fixed;
+            top: 20%;
+            margin-left: 20%;
+            margin-right: 25%;
+            width: 50%;
+
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-header h1 {
+            margin: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        #post-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #cancel-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+</style>
+
+</head>
+<body>
+    <div id="card" class="post-container gone">
+        <div class="post-header">
+            <h1>New Post</h1>
+            <button id="cancel-btn">Cancel</button>
+        </div>
+        <form id="post-form" method="POST">
+            <div class="form-group">
+                <label for="post-title">Title:</label>
+                <input type="text" id="post-title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="post-subject">Subject:</label>
+                <input type="text" id="post-subject" name="subject">
+            </div>
+            <div class="form-group">
+                <label for="post-description">Description:</label>
+                <textarea id="post-description" name="description" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="post-description">Links:</label>
+                <textarea id="post-description" name="links" rows="2"></textarea>
+            </div>
+            <button type="submit" id="post-btn">Post</button>
+        </form>
+    </div>
+</body>
+</html>
