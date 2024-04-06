@@ -590,40 +590,52 @@ CHOICES = [
 
 ################################################## TO CONNECT ROUTE ####################################################################
 
+from flask import request
+
+from flask import session
+
 @app.route('/connect', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
         requirements = request.form.getlist('requirement')
         user_requirements = np.array([1 if choice in requirements else 0 for choice in CHOICES])
     else:
-        user_requirements = np.zeros(len(CHOICES)) 
-    
+        user_requirements = np.zeros(len(CHOICES))
+
     all_users_interests = []
-    all_user_ids = []
     all_user_data = []  # Store all user data including username, branch, and year
-    
+    all_user_ids=[]
+
+    current_user_id = session.get('user_id')  # Assuming session['user_id'] contains the Object ID of the logged-in user
+
     for user_data in mongo.db.user_interests.find():
         user_id = user_data.get('_id')
-        if user_id:
+
+        if user_id == current_user_id:  # Skip the current user
+            continue
+
+        else:
             all_user_ids.append(user_id)
             user_info = users_collection.find_one({'_id': user_id})
-            if user_info:
-                username = user_info.get('username', 'Unknown')
-                branch = user_info.get('branch', 'Unknown')
-                year = user_info.get('year', 'Unknown')
-            else:
-                username, branch, year = 'Unknown', 'Unknown', 'Unknown'
-            all_user_data.append({'user_id': user_id, 'username': username, 'branch': branch, 'year': year})
-            interests = [user_data[choice] for choice in CHOICES]
-            all_users_interests.append(interests)
-    
+
+        if user_info:
+            username = user_info.get('username', 'Unknown')
+            branch = user_info.get('branch', 'Unknown')
+            year = user_info.get('year', 'Unknown')
+        else:
+            username, branch, year = 'Unknown', 'Unknown', 'Unknown'
+
+        all_user_data.append({'user_id': user_id, 'username': username, 'branch': branch, 'year': year})
+        interests = [user_data[choice] for choice in CHOICES]
+        all_users_interests.append(interests)
+
     all_users_interests = np.array(all_users_interests)
     similarities = cosine_similarity([user_requirements], all_users_interests)[0]
-    
+
     compatible_users_data = [{'user_id': user['user_id'], 'username': user['username'], 'branch': user['branch'], 'year': user['year'], 'similarity': similarity} 
                              for user, similarity in zip(all_user_data, similarities)]
     compatible_users_data.sort(key=lambda x: x['similarity'], reverse=True)
-    
+
     return render_template('connect_people.html', compatible_users=compatible_users_data)
 
 
@@ -802,6 +814,9 @@ def find_branch(mis):
             return branch
 ######################################################## INDEX HOME PAGE ###############################################################################
 @app.route('/')
+def index2():
+    return render_template('landing_page.html')
+@app.route('/main')
 def index1():
     return render_template('Main.html')
 ######################################################### LOGIN SIGN UP #####################################################################
