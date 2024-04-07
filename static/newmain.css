@@ -102,12 +102,18 @@ h3{
 
   .login-section{
     /* From https://css.glass */
-background: rgba(212, 190, 190, 0.11);
+/* background: rgba(212, 190, 190, 0.11); */
 border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+/* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(6.9px);
 -webkit-backdrop-filter: blur(6.9px);
-border: 1px solid rgba(212, 190, 190, 0.14);
+border: 1px solid rgba(212, 190, 190, 0.14); */
+background: rgba(140, 136, 136, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8.5px);
+    -webkit-backdrop-filter: blur(8.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 width: 200px;
 margin: 20px;
 padding: 20px;
