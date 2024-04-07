@@ -198,7 +198,7 @@ body {
   color: #fff;
   display: inline-block;
   position: relative;
-  top: 70px;
+  top: 40px;
 }
 
 .btn:hover {
@@ -528,7 +528,7 @@ body {
   text-align: center;
   align-self: center;
   /* margin: 0 20px; */
-  /* line-height: 3em; */
+  line-height: 2em;
   /* margin-left: 20px; */
 }
 .connect-head h1{
@@ -541,7 +541,7 @@ body {
 .img-container img{
   scale: 1.2;
   position: relative;
-  bottom: 25px;
+  bottom: 50px;
 }
 .container-3{
   /* border: 2px solid white; */
@@ -554,4 +554,7 @@ body {
   position: relative;
   top: 25px;
 
+}
+.connect-collab h1{
+  font-size: 4rem;
 }
