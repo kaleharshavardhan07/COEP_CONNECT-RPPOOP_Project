@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -318,6 +318,61 @@
         </div>
         </div>
     </section>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Responsive Registration Form</title>
+  <meta name="viewport" content="width=device-width,
+      initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/signup_style.css" />
+</head>
+
+<body>
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div id='title'>
+  <div class="container">
+    <h1 class="form-title">SIGN UP</h1>
+    <form  method="POST" action="{{ url_for('signup') }}">
+      <div class="main-user-info">
+        <div class="user-input-box">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="NAME" placeholder="Enter Full Name" required=""/>
+        </div>
+        <div class="user-input-box">
+          <label for="username">MIS No.</label>
+          <input type="text" id="username" name="MISNO" placeholder="Enter MIS" required=""/>
+        </div>
+        <div class="user-input-box">
+          <label for="email">College Email</label>
+          <input type="email" id="email" name="EMAIL" placeholder="Enter Email" required="" />
+        </div>
+        <div class="user-input-box">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="phonenumber" id="phoneNumber" name="MO_NO" placeholder="Enter Phone Number" required=""/>
+        </div>
+        <div class="user-input-box">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="pswd" placeholder="Enter Password" required="" />
+        </div>
+      </div>
+      
+      <div class="register-link">
+        <p>have an account? <a href="{{ url_for('login')}}">Sign-in</a></a></p>
+    </div>
+      <div class="form-submit-btn">
+        <input type="submit" value="SIGNUP">
+      </div>
+    </form>
+  </div>
 </body>
 
 </html>
