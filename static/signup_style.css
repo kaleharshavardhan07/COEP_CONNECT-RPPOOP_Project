@@ -4,6 +4,18 @@ html {
     overflow: hidden;
     /* overflow: hidden; */
 }
+#stars {
+    position: fixed;
+    left: 0px;
+}
+#stars2 {
+    position: fixed;
+    left: 0px;
+}
+#stars3 {
+    position: fixed;
+    left: 0px;
+}
 
 #stars {
     width: 1px;
