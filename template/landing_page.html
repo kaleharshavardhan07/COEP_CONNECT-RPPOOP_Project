@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COEP CONNECT</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="../static/landing_page.css" />
+</head>
+
+<body>
+  <!-- Menu -->
+  <div class="menu">
+    <div class="container flex">
+      <!-- Mobile Button -->
+      <div class="mobile-btn">
+        <ion-icon name="grid"></ion-icon>
+      </div>
+      <div class="logo">
+        <h2>COEP CONNECT</h2>
+      </div>
+
+      <ul class="nav">
+        <li class="nav-item"><a href="#">Home</a></li>
+        <li class="nav-item"><a href="#why-us">Features</a></li>
+        <li class="nav-item"><a href="#explore">Explore</a></li>
+        <!-- <li class="nav-item"><a href="#discount">Register</a></li> -->
+      </ul>
+    </div>
+  </div>
+  <!-- End Menu -->
+
+  <!-- Header -->
+  <div class="mainnn">
+    <header class="header">
+      <div class="container flex">
+        <div class="text">
+          <h1 class="mb">
+            COEP <br />
+            <span>CONNECT</span>
+          </h1>
+
+          <p class="mb ">
+          <p class="new">
+          <h2 class="new">C</h2>
+          <p class="neww">onnect...</p>
+          <h2 class="new">C</h2>
+          <p class="neww">reate...</p>
+          <h2 class="new">C</h2>
+          <p class="neww">ollaborate</p>
+          </p>
+          </p>
+
+          <a href="{{url_for('index1')}}" class="btn mt">Get Started Now</a>
+        </div>
+
+        <div class="visual visual-1">
+          <img src="{{ url_for('static', filename='assests/new_logo2.png') }}" alt="New Logo">
+
+        </div>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- Why Us -->
+    <div class="section section-2" id="why-us">
+      <div class="container-2">
+        <div class="text-container">
+          <div class="connect-head">
+            <div>
+              <h1 style="color: #29a396;">C<h1>ONNECT</h1>
+              </h1>
+            </div>
+          </div>
+          <div class="connect-txt">
+            <h3>"Embark on a journey of connection within our community, fostering bonds that last a lifetime. Our
+              platform brings together hearts and minds, bridging distances with shared passions and pursuits"</h3>
+          </div>
+
+        </div>
+        <div class="img-container">
+          <img src="../static/assests/connect_laptop_new.png">
+        </div>
+      </div>
+    </div>
+    <!-- End Why Us -->
+
+    <!-- Explore -->
+    <div class="section" id="explore">
+      <div class="container-3">
+        <div class="text-container">
+          <div class="connect-head">
+            <div>
+              <h1 style="color: #29a396;">C<h1>REATE</h1>
+              </h1>
+            </div>
+          </div>
+          <div class="connect-txt">
+            <h3>"Empower your voice and creativity as you contribute to our vibrant community canvas. Share, inspire, and connect through a kaleidoscope of posts, sparking conversations and forging bonds that resonate"</h3>
+          </div>
+
+        </div>
+        <div class="img-container">
+          <img src="../static/assests/new_create_laptop.png">
+        </div>
+      </div>
+    </div>
+    <!-- End Explore -->
+
+    <!-- Trainer -->
+    <div class="section" id="trainer">
+      <div class="container-2">
+        <div class="text-container">
+          <div class="connect-head connect-collab">
+            <div>
+              <h1 style="color: #29a396;">C<h1>OLLABORATE</h1>
+              </h1>
+            </div>
+          </div>
+          <div class="connect-txt">
+            <h3>"Unleash the power of collaboration within our ecosystem, where minds converge to innovate and co-create. Seamlessly join forces, amplify ideas, and cultivate collective brilliance across disciplines and passions."</h3>
+          </div>
+
+        </div>
+        <div class="img-container">
+          <img src="../static/assests/new_collab.png">
+        </div>
+      </div>
+    </div>
+    <!-- End Trainer -->
+
+    <!-- Testimonial -->
+    <div class="section" id="testimonial">
+      <div class="container flex">
+        <div class="text">
+          <h2 class="primary">
+            That's What Our Super <br />
+            Client Says
+          </h2>
+
+          <br />
+          <br />
+          <br />
+
+          <div class="client">
+            <img src="https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/client1.jpg" alt="" />
+            <h2 class="secondary">Exelent Training</h2>
+            <p class="tertiary">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
+              quas voluptatem ad, repudiandae voluptates odio deleniti
+              reiciendis in veniam quidem expedita maxime error fugit. Pariatur
+              quasi sunt aut id. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Neque, officiis.
+            </p>
+          </div>
+        </div>
+        <div class="visual">
+          <img src="https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/testimonial.png" alt="" />
+        </div>
+      </div>
+    </div>
+    <!-- End Testimonial -->
+
+    <!-- Discount -->
+    <div class="section" id="discount">
+      <div class="container flex">
+        <div class="visual">
+          <img src="https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/discount.png" alt="" />
+        </div>
+        <div class="text">
+          <h2 class="primary mb">
+            Fitness Classes This Summer, Pay Now And Get 25% Discount
+          </h2>
+
+          <p class="tertiary mb">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab maxime
+            minus praesentium est et veniam voluptate alias excepturi minima
+            placeat amet nostrum, eligendi, quod cum ducimus nesciunt ipsa eum,
+            explicabo eaque obcaecati.
+          </p>
+
+          <a href="#" class="btn bt">Book Now</a>
+        </div>
+      </div>
+    </div>
+    <!-- End Discount -->
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container flex">
+        <p class="tertiary">
+          &copy; Team Wizards. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+    </a>
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Ion Icons Js -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+  <!-- JS -->
+  <script src="../static/landing_page.js"></script>
+</body>
+
+</html>

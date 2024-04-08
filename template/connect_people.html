@@ -1205,14 +1205,15 @@
         <center> <button type="submit" class="lastBTN">Find My Connection</button></center></center></div>
         <center> <div class="glass-morphism-container-hover-effect">
             <h1>Preferred Connections</h1>
-            <ul>
-                {% for user in compatible_users %}
+            
+            {% for user in compatible_users %}
+                <ul>
                     <div class="main">
                         <li>
                             <h2 class="usename">{{ user.username }}</h2> <h4 class="subInfo">{{ user.year }} {{ user.branch }} Engineering Student</h4>   | <h2 class="usename">{{ '%.2f'|format(user.similarity*100) }}%</h2>
                             <form method="post" action="/addpeople">
                                 <input type="hidden" name="user_id" value="{{ user.user_id }}">
-                                <button type="submit" name="addpeople" class="mainBtn">Connect</button>
+                                <button type="submit" name="addpeople" class="mainBtn"  id="mainBtnn">Connect</button>
                             </form>
                         </li>
                     </div> 
@@ -1255,7 +1256,10 @@
         btn.textContent = "Submitted";
 
     });
+
+    
 </script>
+<script src="../static/connect_people.js"></script>
 </body>
 </html>
 
