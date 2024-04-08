@@ -73,8 +73,8 @@
 
         section .signin {
             position: absolute;
-            width: 80%;
-            background:rgb(84, 83, 83);
+            width: 50%;
+            background:rgb(45, 45, 45);
             
             z-index: 1000;
             display: flex;
@@ -293,10 +293,10 @@
                                 required="">
                         </div>
 
-                        <div id="Branch" style="font-size: 1.17em; margin:15px;" class="inputBox">
+                        <div id="branchOutput" style="font-size: 1.17em; margin:15px;" class="inputBox">
                             <h3>BRANCH:</h3>
                         </div>
-                        <div id="year" style="font-size: 1.17em; margin:15px;" class="inputBox">
+                        <div id="yearOutput" style="font-size: 1.17em; margin:15px;" class="inputBox">
                             <h3>YEAR:</h3>
                         </div>
                         <div class="inputBox"> <input type="password" name="pswd" placeholder=" Enter new Password"
@@ -318,6 +318,75 @@
         </div>
         </div>
     </section>
+    <script>// Function to find the year based on MIS number
+        function findYear(mis) {
+            if (mis.startsWith("6122")) {
+                return "Second Year";
+            } else if (mis.startsWith("6123")) {
+                return "First Year";
+            } else if (mis.startsWith("1121")) {
+                return "Third Year";
+            } else if (mis.startsWith("1120")) {
+                return "Final Year";
+            } else if (mis.startsWith("6422")) {
+                return "Second Year";
+            } else if (mis.startsWith("6423")) {
+                return "First Year";
+            } else if (mis.startsWith("1421")) {
+                return "Third Year";
+            } else if (mis.startsWith("1420")) {
+                return "Final Year";
+            } else {
+                return "Unknown Year";
+            }
+        }
+        
+        // Function to find the branch based on MIS number
+        function findBranch(mis) {
+            if (mis[5] === '1') {
+                return "CIVIL";
+            } else if (mis[5] === '3' && mis[4] === '0') {
+                return "COMPUTER";
+            } else if (mis[5] === '5') {
+                return "ELECTRICAL";
+            } else if (mis[5] === '7') {
+                return "ENTC";
+            } else if (mis[5] === '9') {
+                return "INSTRU";
+            } else if (mis[5] === '3' && mis[4] === '1') {
+                return "MANUFACTURING";
+            } else if (mis[5] === '0') {
+                return "MECHANICAL";
+            } else if (mis[5] === '1' && mis[4] === '1') {
+                return "METALLARGY";
+            } else if (mis[5] === '4' && mis[4] === '1') {
+                return "PLANNING";
+            } else {
+                return "Unknown Branch";
+            }
+        }
+        
+        // Function to update the branch and year outputs
+        function updateOutputs(mis) {
+            const branchOutput = document.getElementById('branchOutput');
+            const yearOutput = document.getElementById('yearOutput');
+        
+            // Find branch and year based on MIS number
+            const branch = findBranch(mis);
+            const year = findYear(mis);
+        
+            // Update branch and year outputs
+            branchOutput.textContent = `Branch: ${branch}`;
+            yearOutput.textContent = `Year: ${year}`;
+        }
+        
+        // Event listener for MIS number input field
+        const misNumberInput = document.getElementById('misNumber');
+        misNumberInput.addEventListener('input', function() {
+            const mis = this.value;
+            updateOutputs(mis);
+        });
+        </script>
 </body>
 
 </html>
