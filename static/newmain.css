@@ -99,8 +99,17 @@ h3{
   
     padding-left: 10px;
 }
+h4{
+  text-shadow: #147BCD;
+  color: #d0bf95;
+  font-weight: 600;
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
 
   .login-section{
+
     /* From https://css.glass */
 /* background: rgba(212, 190, 190, 0.11); */
 border-radius: 16px;
@@ -108,12 +117,12 @@ border-radius: 16px;
 backdrop-filter: blur(6.9px);
 -webkit-backdrop-filter: blur(6.9px);
 border: 1px solid rgba(212, 190, 190, 0.14); */
-background: rgba(140, 136, 136, 0.3);
+background: rgba(140, 136, 136, 0.2);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(8.5px);
-    -webkit-backdrop-filter: blur(8.5px);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1111.5px);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid gray;
 width: 200px;
 margin: 20px;
 padding: 20px;
@@ -128,9 +137,10 @@ padding: 20px;
 
 /* CSS */
 button {
-  background-image: linear-gradient(#42A1EC, #0070C9);
+  border-radius: 20px;
+  /* background-image: linear-gradient(#42A1EC, #0070C9); */
   border: 1px solid #0077CC;
-  border-radius: 4px;
+  background-color: #006DBC;
   box-sizing: border-box;
   color: #FFFFFF;
   cursor: pointer;
@@ -141,7 +151,7 @@ button {
   font-weight: 400;
   letter-spacing: -.022em;
   line-height: 1.47059;
-  min-width: 30px;
+  min-width: 50px;
   overflow: visible;
   padding: 4px 15px;
   text-align: center;
@@ -208,6 +218,7 @@ h1::before {
   ========================
   */
   #text3d {
+    margin-top: 10%;
       color: #70869d;
       letter-spacing: .15em;
       text-shadow: 

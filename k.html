@@ -1,0 +1,664 @@
+!
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/dropdown.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <!-- Include MediaPipe Hands and Camera Utils libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
+    <!-- <meta http-equiv="refresh" content="3"> -->
+
+    <title>Document</title>
+    <style></style>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+
+        body {
+            background: #000;
+            background-size: cover;
+            background-position: center;
+            font-family: "Open Sans", sans-serif;
+        }
+
+
+        .container {
+            width: 60%;
+            height: 100%;
+            background-color: aliceblue;
+        }
+
+        .post-container {
+            z-index: 1000;
+            color: #000;
+            position: fixed;
+            top: 20%;
+            margin-left: 20%;
+            margin-right: 25%;
+            width: 50%;
+
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-header h1 {
+            margin: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        #post-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #cancel-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .gone {
+            z-index: -100;
+            display: none;
+        }
+
+
+        .header {
+            width: 90vw;
+            margin: auto;
+            position: fixed;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #bfbbbb;
+            padding: 10px 20px;
+        }
+
+        .header__logo {
+            font-size: 18px;
+        }
+
+        .navbar {
+            display: flex;
+        }
+
+        .navbar__menu {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar__item {
+            margin-right: 10px;
+        }
+
+        .navbar__link {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+        }
+
+        .navbar__link:hover {
+            background-color: #ddd;
+        }
+
+        .navbar__link span {
+            margin-left: 5px;
+        }
+
+        [data-feather] {
+            margin-right: 5px;
+        }
+    </style>
+    <style>
+        a{
+            color: #4d4d4d;
+        }
+        h1{    font-size: 1.2rem;
+            font-weight: 100;}
+        .feed1{
+            margin-top: 100px;
+        }
+        body {
+            background: #e5ded8;
+            box-sizing: border-box;
+        }
+
+        .blog-container {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: hsla(0deg, 0%, 0%, 0.2) 0 4px 2px -2px;
+            font-family: "adelle-sans", sans-serif;
+            font-weight: 100;
+            margin: 40px auto;
+            width: 20rem;
+        }
+
+        @media screen and (min-width: 480px) {
+            .blog-container {
+                width: 28rem;
+            }
+        }
+
+        @media screen and (min-width: 767px) {
+            .blog-container {
+                width: 40rem;
+            }
+        }
+
+        @media screen and (min-width: 959px) {
+            .blog-container {
+                width: 50rem;
+            }
+        }
+
+        .blog-container a {
+            color: black;
+            text-decoration: none;
+            transition: 0.25s ease;
+        }
+
+        .blog-container a:hover {
+            border-color: #ff4d4d;
+            color: #ff4d4d;
+        }
+
+        .blog-cover {
+            background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/yosemite-3.jpg");
+            background-size: cover;
+            border-radius: 5px 5px 0 0;
+            height: 15rem;
+            box-shadow: inset hsla(0deg, 0%, 0%, 0.2) 0 64px 64px 16px;
+        }
+
+        .blog-author,
+        .blog-author--no-cover {
+            margin: 0 auto;
+            padding-top: 0.125rem;
+            width: 80%;
+        }
+
+        .blog-author h3::before,
+        .blog-author--no-cover h3::before {
+            background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg");
+            background-size: cover;
+            border-radius: 50%;
+            content: " ";
+            display: inline-block;
+            height: 32px;
+            margin-right: 0.5rem;
+            position: relative;
+            top: 8px;
+            width: 32px;
+        }
+
+        .blog-author h3 {
+            color: #fff;
+            font-weight: 100;
+        }
+
+        .blog-author--no-cover h3 {
+            color: #999999;
+            font-weight: 100;
+        }
+
+        .blog-body {
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        .video-body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .blog-title h1 a {
+            color: #333;
+            font-weight: 100;
+        }
+
+        .blog-summary p {
+            color: #4d4d4d;
+        }
+
+        .blog-tags ul {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .blog-tags li+li {
+            margin-left: 0.5rem;
+        }
+
+        .blog-tags a {
+            border: 1px solid #999999;
+            border-radius: 3px;
+            color: #999999;
+            font-size: 0.75rem;
+            height: 1.5rem;
+            line-height: 1.5rem;
+            letter-spacing: 1px;
+            padding: 0 0.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            white-space: nowrap;
+            width: 5rem;
+        }
+
+        .blog-footer {
+            border-top: 1px solid #e6e6e6;
+            margin: 0 auto;
+            padding-bottom: 0.125rem;
+            width: 80%;
+        }
+
+        .blog-footer ul {
+            list-style: none;
+            display: flex;
+            flex: row wrap;
+            justify-content: flex-end;
+            padding-left: 0;
+        }
+
+        .blog-footer li:first-child {
+            margin-right: auto;
+        }
+
+        .blog-footer li+li {
+            margin-left: 0.5rem;
+        }
+
+        .blog-footer li {
+            color: #999999;
+            font-size: 0.75rem;
+            height: 1.5rem;
+            letter-spacing: 1px;
+            line-height: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .blog-footer li a {
+            color: #999999;
+        }
+
+        .comments {
+            margin-right: 1rem;
+        }
+
+        .published-date {
+            border: 1px solid #999999;
+            border-radius: 3px;
+            padding: 0 0.5rem;
+        }
+
+        .numero {
+            position: relative;
+            top: -0.5rem;
+        }
+
+        .icon-star,
+        .icon-bubble {
+            fill: #999999;
+            height: 24px;
+            margin-right: 0.5rem;
+            transition: 0.25s ease;
+            width: 24px;
+        }
+
+        .icon-star:hover,
+        .icon-bubble:hover {
+            fill: #ff4d4d;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="header__logo">
+            <strong>COEP CONNECT</strong>
+        </div>
+        <nav class="navbar">
+            <ul class="navbar__menu">
+
+                <li class="navbar__item">
+                    <a href="{{url_for('main_feed')}}" id="allpost" class="navbar__link"><i
+                            data-feather="message-square"></i><span>FEED</span></a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#" id="mypost" class="navbar__link"><i data-feather="users"></i><span>MY-POST</span></a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{{url_for('create_post')}}" id="show" class="navbar__link"><i data-feather="settings"></i><span>ADD-POST</span></a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{{url_for('connect')}}" class="navbar__link"><i
+                            data-feather="settings"></i><span>CONNECT</span></a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{{url_for('index3')}}" class="navbar__link"><i
+                            data-feather="archive"></i><span>POLL'S</span></a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#" class="navbar__link"><i data-feather="help-circle"></i><span>HELPDISK</span></a>
+                </li>
+
+                <li class="navbar__item">
+                    <a href="{{url_for('notify')}}" class="navbar__link"><i
+                            data-feather="folder"></i><span>NOTIFICATION</span></a>
+                </li>
+                <div class="profile-dropdown">
+                    <div onclick="toggle()" class="profile-dropdown-btn">
+                        <div class="profile-img">
+                            <i class="fa-solid fa-user"></i>
+                            <i class="fa-solid fa-circle"></i>
+                        </div>
+
+                        <span>Me
+                            <i class="fa-solid fa-angle-down"></i>
+                        </span>
+                    </div>
+
+                    <ul class="profile-dropdown-list">
+                        <li class="profile-dropdown-list-item">
+                            <a href="{{url_for('myprof')}}">
+                                <i class="fa-regular fa-user"></i>
+                                See Profile
+                            </a>
+                        </li>
+
+                        <li class="profile-dropdown-list-item">
+                            <a href="{{url_for('myinter')}}">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                My Interest
+                            </a>
+                        </li>
+
+                        <li class="profile-dropdown-list-item">
+                            <a href="{{url_for('myconnect')}}">
+                                <i class="fa-solid fa-user-group"></i>
+                                My connections
+                            </a>
+                        </li>
+                        <li class="profile-dropdown-list-item">
+                            <a href="{{url_for('mypass')}}">
+                                <i class="fa-solid fa-lock"></i>
+                                Change Password
+                            </a>
+                        </li>
+                        <hr />
+
+                        <li class="profile-dropdown-list-item">
+                            <a href="{{url_for('logout')}}">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </ul>
+        </nav>
+
+
+    </div>
+    <!-- <button class="gesture-button" id="startGestureButton">Start Gesture Control</button> -->
+    <!-- <div id="card" class="post-container gone">
+        <div class="post-header">
+            <h1>New Post</h1>
+            <button id="cancel-btn">Cancel</button>
+        </div>
+        <form id="post-form" method="POST">
+            <div class="form-group">
+                <label for="post-title">Title:</label>
+                <input type="text" id="post-title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="post-subject">Subject:</label>
+                <input type="text" id="post-subject" name="subject">
+            </div>
+            <div class="form-group">
+                <label for="post-description">Description:</label>
+                <textarea id="post-description" name="description" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="post-description">Links:</label>
+                <textarea id="post-description" name="links" rows="2"></textarea>
+            </div>
+            <button type="submit" id="post-btn">Post</button>
+        </form>
+    </div> -->
+    <!-- <div id="allfeed" class="feed1">
+
+        <div class="feed">
+            <div class="outerfeedbox">
+                {% for data in datas %}
+                <div class="feedbox">
+                    <a href="{{ url_for('dashboard1', user_id1=data.user_id) }}">
+                        <h2> ⭕{{ data.username }}</h2>
+                    </a>
+                    <div style="border: 4px solid rgb(90, 90, 109);
+                    padding: 10px;
+                    border-radius: 20px;">
+                        <h3>TITLE:{{ data.title }}</h3>
+                        <p>SUBJECT:{{ data.subject }}</p>
+                        <p>AUTH:{{ data.description }}</p>
+                        <a href="{{data.links}}">
+                            <p>LINK:{{ data.links}}</p>
+                    </a></div>
+                    <p>TIME:{{ data.post_time }}</p>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div> -->
+    <div id="allfeed" class="feed1"> 
+        {% for data in datas %}
+        <div class="blog-container">
+
+            <div class="blog-header">
+                <div class="blog-author--no-cover">
+                    <a href="{{ url_for('dashboard1', user_id1=data.user_id) }}">
+                        <h3> {{ data.username }}</h3>
+                    </a>
+                </div>
+            </div>
+
+            <div class="blog-body">
+                <div class="blog-title">
+                    <h1>Title:{{ data.title }}</h1>
+                </div>
+                <div class="blog-summary">
+                    <p>Subject:{{ data.subject }}</p>
+                    <p>->:{{ data.description }}</p>
+                </div> <a href="{{data.links}}">LINK:
+                    <p>{{ data.links}}</p>
+                </a>
+                <div class="blog-tags">
+                   
+                </div>
+            </div>
+
+            <div class="blog-footer">
+                <ul>
+                    <li class="published-date">Time:{{ data.post_time }}</li>
+                    <li class="comments"><a href="#"><svg class="icon-bubble">
+                                <use xlink:href="#icon-bubble"></use>
+                            </svg><span class="numero">8</span></a></li>
+                    <li class="shares"><a href="#"><svg class="icon-star">
+                                <use xlink:href="#icon-star"></use>
+                            </svg><span class="numero">3</span></a></li>
+                </ul>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+    <div id="myfeed" class="feed1"> {% for data in datas %}
+        {% if data.user_id ==user_id1 %}
+        <div class="blog-container">
+
+            <div class="blog-header">
+                <div class="blog-author--no-cover">
+                    <a href="{{ url_for('dashboard1', user_id1=data.user_id) }}">
+                        <h3>{{ data.username }}</h3>
+                    </a>
+                </div>
+            </div>
+
+            <div class="blog-body">
+                <div class="blog-title">
+                    <h1>Title:{{ data.title }}</h1>
+                </div>
+                <div class="blog-summary">
+                    <p>Subject:{{ data.subject }}</p>
+                    <p>->:{{ data.description }}</p>
+                </div><a href="{{data.links}}">
+                    <p>Link:{{ data.links}}</p>
+                </a>
+                <div class="blog-tags">
+                    
+                </div>
+            </div>
+
+            <div class="blog-footer">
+                <ul>
+                    <li class="published-date">Time:{{ data.post_time }}</li>
+                    <li class="comments"><a href="#"><svg class="icon-bubble">
+                                <use xlink:href="#icon-bubble"></use>
+                            </svg><span class="numero">8</span></a></li>
+                    <li class="shares"><a href="#"><svg class="icon-star">
+                                <use xlink:href="#icon-star"></use>
+                            </svg><span class="numero">3</span></a></li>
+                </ul>
+            </div>
+
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <!-- <div id="myfeed" class="feed1 gone">
+
+        <div class="feed">
+            <div class="outerfeedbox">
+                {% for data in datas %}
+                {% if data.user_id ==user_id1 %}
+                <div class="feedbox">
+                    <h3>{{data.username}}</h3>
+                    <p>TIME:{{data.post_time}}</p>
+                    <h4>TITLE:{{data.title}}</h4>
+                    <h4>SUBJECT:{{data.subject}}</h4>
+                    <p>AUTH:{{data.description}}</p>
+                    <p>LINK:{{data.link}}</p>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div> -->
+    <video id="videoElement" style="display: none;"></video>
+    <script src="{{ url_for('static', filename='gesture.js') }}"></script>
+    <script src="../static/gesture.js"></script>
+    <script src="../static/dropdown.js"></script>
+
+
+
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var cancelBtn = document.getElementById('cancel-btn');
+            var postForm = document.getElementById('show');
+            var card = document.getElementById('card');
+            var postbtn = document.getElementById('post-btn')
+            cancelBtn.addEventListener('click', function () {
+                card.classList.add("gone")
+                // Redirect to feed page
+            });
+            postForm.addEventListener('click', function () {
+                card.classList.remove("gone")
+
+                // Redirect to feed page
+            });
+            postbtn.addEventListener('click', () => {
+                setTimeout(() => {
+
+                    location.href = location.href;
+                }, 2000);
+            });
+
+
+
+        })
+    </script> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var allpost = document.getElementById('allpost');
+            var mypost = document.getElementById('mypost');
+            var allfeed = document.getElementById('allfeed');
+            var myfeed = document.getElementById('myfeed');
+            mypost.addEventListener('click', function () {
+                myfeed.classList.remove("gone")
+                allfeed.classList.add("gone")
+                // Redirect to feed page
+            });
+            allpost.addEventListener('click', function () {
+                allfeed.classList.remove("gone")
+                myfeed.classList.add("gone")
+
+                // Redirect to feed page
+            });
+
+
+        })
+    </script>
+    <script src="../static/dropdown.js"></script>
+</body>
+
+</html>
