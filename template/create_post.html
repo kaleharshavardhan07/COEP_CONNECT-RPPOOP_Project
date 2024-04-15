@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -109,5 +109,234 @@
             <button type="submit" id="post-btn">Post</button>
         </form>
     </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+    <link rel="stylesheet" href="../static/myProfile.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <style>
+        :root{
+            --bg-body: rgb(6, 5, 40);
+            --primary-color: rgb(248, 248, 248);
+            --primary-hover-color: rgb(159, 159, 159);
+            --scrollbar-color: rgba(44, 49, 88, 0.7);
+            --card-bg-color: rgb(24, 26, 50);
+            --star-color: #a1d31a;
+            --border-color: rgba(189, 192, 234, 0.4);
+            --shadow-color: rgba(208, 195, 226, 0.13);
+            --accent-color: rgb(185, 129, 250);
+          }
+            body {
+              color: antiquewhite;
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 0;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              background-color: var(--bg-body);
+            }
+        
+            profile-card {
+              
+              margin: 10px;
+              background-color: #fff;
+              border-radius: 10px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              padding: 20px;
+              
+              width: 100%;
+              text-align: center;
+              position: relative;
+              overflow: hidden;
+            }
+            .profile-card{ text-align: center;
+              padding: 20px;background-color: var(--card-bg-color);
+              border-radius: 8px;
+              border: 2px solid rgba(169, 150, 253, 0.5);
+              box-shadow: 0px 4px 5px 0px var(--shadow-color),
+                0px 1px 8px 0px var(--shadow-color), 0px 2px 4px -1px var(--shadow-color);}
+    
+        profile-card {margin: 10px;
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+          
+          width: 100%;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+        }
+    
+        .profile-card h2 {
+          margin-bottom: 10px;
+        }
+    
+        .profile-card p {
+          margin-bottom: 20px;
+        }
+    
+        .info-list {
+          text-align: left;
+          margin-bottom: 20px;
+        }
+    
+        .info-list li {
+          margin-bottom: 10px;
+        }
+    
+        .info-list li strong {
+          display: inline-block;
+          width: 120px;
+        }
+    
+        .animation-example {
+          background-color: #3498db;
+          color: #fff;
+          padding: 10px 20px;
+          border-radius: 5px;
+          position: absolute;
+          bottom: -50px;
+          left: 50%;
+          transform: translateX(-50%);
+          transition: bottom 0.3s ease-in-out;
+        }
+    
+        .animation-example:hover {
+          bottom: 0;
+        }
+        .gone{
+            display: none;
+        }
+        #card{
+            top: 10px;
+            height: 80vh;
+            width: 90%;
+            position: fixed;
+            z-index: 2;
+        
+        }
+        .card{
+            padding: 30px;
+        }
+        .flex-grow-1{
+            height: 100%;
+        }
+        .blur{
+            filter: blur(20px);
+        }
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-header h1 {
+            margin: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            color: #ccc;
+            background-color: var(--bg-body);
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        #post-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #cancel-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+      </style>
+</head>
+<body>
+
+<div class="container light-style flex-grow-1 container-p-y">
+    <h4 class="font-weight-bold py-3 mb-4">
+        <a href="{{ url_for('main_feed') }}"><i class="fa-solid fa-left-long"></i></a> MAIN FEED
+    </h4>
+    <div class="profile-card">
+        <div class="post-header">
+            <h1>New Post</h1>
+            <button id="cancel-btn">Cancel</button>
+        </div>
+        <form id="post-form" method="POST">
+            <div class="form-group">
+                <label for="post-title">Title:</label>
+                <input type="text" id="post-title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="post-subject">Subject:</label>
+                <input type="text" id="post-subject" name="subject">
+            </div>
+            <div class="form-group">
+                <label for="post-description">Description:</label>
+                <textarea id="post-description" name="description" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="post-description">Links:</label>
+                <textarea id="post-description" name="links" rows="2"></textarea>
+            </div>
+            <button type="submit" id="post-btn">Post</button>
+        </form>
+    </div>
+   
+    
+</div>
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var cancelBtn = document.getElementById('cancel-btn');
+        var card = document.getElementById('card');
+        var edit = document.getElementById('edit');
+        
+        cancelBtn.addEventListener('click', function (event) {
+            event.preventDefault();
+            card.classList.add("gone");
+        });
+        
+        edit.addEventListener('click', function (event) {
+            event.preventDefault();
+            card.classList.remove("gone");
+        });
+    });
+</script>
+
 </body>
 </html>
