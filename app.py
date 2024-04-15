@@ -594,6 +594,8 @@ from flask import request
 
 from flask import session
 
+from bson import ObjectId
+
 @app.route('/connect', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
@@ -604,30 +606,34 @@ def index():
 
     all_users_interests = []
     all_user_data = []  # Store all user data including username, branch, and year
-    all_user_ids=[]
+    all_user_ids = []
 
-    current_user_id = session.get('user_id')  # Assuming session['user_id'] contains the Object ID of the logged-in user
-
+    user_id_str = session.get('user_id')  # Assuming session['user_id'] contains the Object ID of the logged-in user
+    current_user_id = ObjectId(user_id_str)
+    
     for user_data in mongo.db.user_interests.find():
-        user_id = user_data.get('_id')
-
-        if user_id == current_user_id:  # Skip the current user
-            continue
-
-        else:
-            all_user_ids.append(user_id)
-            user_info = users_collection.find_one({'_id': user_id})
+        user_id = user_data['_id']
+        all_user_ids.append(user_id)
+        
+        user_info = users_collection.find_one({'_id': user_id})
 
         if user_info:
-            username = user_info.get('username', 'Unknown')
-            branch = user_info.get('branch', 'Unknown')
-            year = user_info.get('year', 'Unknown')
+            if user_id == current_user_id:
+                continue
+            else:
+                username = user_info.get('username', 'Unknown')
+                branch = user_info.get('branch', 'Unknown')
+                year = user_info.get('year', 'Unknown')
         else:
             username, branch, year = 'Unknown', 'Unknown', 'Unknown'
 
         all_user_data.append({'user_id': user_id, 'username': username, 'branch': branch, 'year': year})
         interests = [user_data[choice] for choice in CHOICES]
         all_users_interests.append(interests)
+
+    # Delete the current user's ID from the list of all user IDs
+    index_to_remove = all_user_ids.index(current_user_id)
+    del all_user_ids[index_to_remove]
 
     all_users_interests = np.array(all_users_interests)
     similarities = cosine_similarity([user_requirements], all_users_interests)[0]
@@ -637,6 +643,7 @@ def index():
     compatible_users_data.sort(key=lambda x: x['similarity'], reverse=True)
 
     return render_template('connect_people.html', compatible_users=compatible_users_data)
+
 
 
 @app.route('/addpeople', methods=['POST', 'GET'])
@@ -678,10 +685,13 @@ def notify():
                 'branch': user['branch'],
                 'year': user['year']
             }
+    flash("connection request send")
     
     return render_template('notifications.html', sender_ids=sender_ids, user_info=user_info)
 
 
+
+from bson import ObjectId
 
 @app.route('/mark_as_read', methods=['POST'])
 def mark_as_read():
@@ -693,7 +703,26 @@ def mark_as_read():
     # Update the document to mark it as read
     notifications_collection.update_one({'receiver_id': user_id, 'sender_id': sender_id, 'is_read': False, 'message': 'Connection Request'}, {'$set': {'is_read': True}})
     
+    # Add sender_id to the user's friend list
+    users_collection.update_one({'_id': ObjectId(user_id)}, {'$addToSet': {'friends': ObjectId(sender_id)}})
+    
+    # Add user_id to sender's friend list
+    users_collection.update_one({'_id': ObjectId(sender_id)}, {'$addToSet': {'friends': ObjectId(user_id)}})
+    
     return redirect('/notifications')
+
+@app.route('/myConnections')
+def personal():
+    user_id = session['user_id']
+    
+    # Query user's information including friends
+    user = users_collection.find_one({'_id': ObjectId(user_id)})
+    friends = []
+    if user and 'friends' in user:
+        friends = users_collection.find({'_id': {'$in': user['friends']}})
+    
+    return render_template('connection.html', friends=friends)
+
     
 @app.route('/submit', methods=['POST'])
 def submit1():
@@ -915,9 +944,9 @@ def myprof():
 def myinter():
     return render_template('interest.html')
     
-@app.route('/myConnections')
-def myconnect():
-    return render_template('connection.html')
+# @app.route('/myConnections')
+# def myconnect():
+#     return render_template('connection.html')
 ##################################################### PASSWORD CHANGE ###################################################################
   
 @app.route('/changePass')

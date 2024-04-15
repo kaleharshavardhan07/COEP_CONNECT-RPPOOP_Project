@@ -1529,7 +1529,7 @@
                                 class="usename">{{ '%.2f'|format(user.similarity*100) }}%</h2>
                             <form method="post" action="/addpeople">
                                 <input type="hidden" name="user_id" value="{{ user.user_id }}">
-                                <button type="submit" name="addpeople" class="mainBtn" id="mainBtnn">Connect</button>
+                                <button type="submit" name="addpeople" class="mainBtn" id="mainBtnn" onclick="alert('connection request send successfully')">Connect</button>
                             </form>
                         </li>
                     </div>
@@ -1547,7 +1547,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-    <script>document.getElementById("getSelectedClubs").addEventListener("click", function () {
+    <script>
+        document.getElementById("getSelectedClubs").addEventListener("click", function () {
             var btn = document.getElementById('getSelectedClubs');
             var selectedClubs = [];
             var selectElements = document.querySelectorAll(".id12");
