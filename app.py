@@ -1124,6 +1124,11 @@ def vote(poll_id):
     )
     
     return redirect(url_for('index3'))
+###############################################   HELP DISK ################################################################################
+@app.route('/help_disk')
+def helpdisk():
+      return render_template('help_disk.html')
+
 ############################################################# UNDER WORKING  
 @app.route('/profile_page')
 def dashboard():
