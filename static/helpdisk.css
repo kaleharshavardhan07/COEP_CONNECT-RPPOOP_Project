@@ -11,7 +11,8 @@
 }
 
 html,
-body {    background-size: cover;
+body {
+      background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
   height: 100%;
@@ -23,10 +24,10 @@ h1{
     font-weight: 900;
     font-family: 'Times New Roman', Times, serif;
 }
-body {
+/* body {
   display: grid;
   place-items: center;
-}
+} */
 
 .page-content {
   display: grid;
@@ -193,4 +194,17 @@ body {
 .card:focus-within .content > *:not(.title) {
     transition-duration: 0s;
   }
+}
+h4{
+  color: white;
+  font-size: 1.2rem;
+  margin: 25px 20px;
+  display: flex;
+  align-self: flex-start;
+  font-weight: 1000;
+}
+h4 i{
+  color: rgb(10, 138, 242);
+  font-size: 1.2rem;
+  
 }

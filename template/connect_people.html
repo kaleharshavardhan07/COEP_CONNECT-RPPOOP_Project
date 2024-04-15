@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Compatible Users</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <!-- Include necessary CSS and JavaScript libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -124,7 +125,9 @@
     </script>
 
 <body>
-    
+    <h4 class="font-weight-bold py-3 mb-4">
+        <a href="{{ url_for('main_feed') }}"><i class="fa-solid fa-left-long"></i></a> MAIN FEED
+      </h4>
     <center>
         <h1 class="h1">Find Compatible Users</h1>
     </center>
@@ -133,7 +136,7 @@
             <div class="glass-morphism-container-hover-effect">
                 <section>
                     <center>
-                        <h2>Select Your Requirements</h2>
+                        <h1 class="subHead">Select Your Requirements</h1>
                     </center>
                     <div class="row d-flex justify-content-center mt-100">
                         <div class="col-md-6">
@@ -206,7 +209,7 @@
 
                             <h2>SELECT FEST-POSITION-POST ?</h2>
                             <div class="row d-flex justify-content-center mt-100">
-                                <div class="col-md-6"> <select class="id12" id="choices-multiple-remove-button"
+                                <div class="col-md-6 mainn"> <select class="id12" id="choices-multiple-remove-button"
                                         name="requirement" placeholder="Select  tags" multiple>
 
                                         <option value="Zest-Accounts and Documentation-Head">Zest-Accounts and
@@ -1519,19 +1522,22 @@
         </div>
         <center>
             <div class="glass-morphism-container-hover-effect">
-                <h1>Preferred Connections</h1>
+                <h1 class="subHead">Preferred Connections</h1>
                 <ul>
                     {% for user in compatible_users %}
 
                     <div class="main">
                         <li>
-                            <h2 class="usename">{{ user.username }}</h2>
-                            <h4 class="subInfo">{{ user.year }} {{ user.branch }} Engineering Student</h4> | <h2
-                                class="usename">{{ '%.2f'|format(user.similarity*100) }}%</h2>
-                            <form method="post" action="/addpeople">
-                                <input type="hidden" name="user_id" value="{{ user.user_id }}">
-                                <button type="submit" name="addpeople" class="mainBtn" id="mainBtnn" onclick="alert('connection request send successfully')">Connect</button>
-                            </form>
+                            <div class="new_cont">
+                                <h2 class="usename">{{ user.username }}</h2>
+                                <h4 class="subInfo">{{ user.year }} {{ user.branch }} Engineering Student</h4> | <h2
+                                    class="usename">{{ '%.2f'|format(user.similarity*100) }}%</h2>
+                                <form method="post" action="/addpeople" class="last_form">
+                                    <input type="hidden" name="user_id" value="{{ user.user_id }}">
+                                    <button type="submit" name="addpeople" class="mainBtn" id="mainBtnn"
+                                        onclick="alert('connection request send successfully')">Connect</button>
+                                </form>
+                            </div>
                         </li>
                     </div>
                     {% endfor %}
