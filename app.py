@@ -938,8 +938,22 @@ def myprof():
     else:
         
         return redirect(url_for('login'))
-
-
+@app.route('/myprofile', methods=['POST'])
+def edit_profile():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))  # Redirect to login if user not logged in
+    
+    if request.method == 'POST':
+        mis_no = request.form['mis_no']
+        email = request.form['email']
+        mobile_no = request.form['mobile_no']
+        # Fetch user data from MongoDB
+        user_data = users_collection.find_one({'_id': ObjectId(session['user_id'])})
+        # Update user data in MongoDB
+        users_collection.update_one({'_id': ObjectId(session['user_id'])}, {'$set': {'email': email, 'MIS_NO': mis_no, 'Mobile_No': mobile_no}})
+        
+        flash('Profile updated successfully.', 'success')
+        return redirect(url_for('myprof'))
 @app.route('/myInterest')
 def myinter():
     return render_template('interest.html')
