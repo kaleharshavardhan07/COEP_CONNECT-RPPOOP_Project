@@ -36,7 +36,9 @@
   margin: 0;
   font-family: "Nunito", sans-serif;
 }
-
+a{
+  text-decoration: none;
+}
 nav {
   user-select: none;
   -webkit-user-select: none;

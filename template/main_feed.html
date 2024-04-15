@@ -18,6 +18,12 @@
                 display: unset;
             }
         }
+        @media (max-width :715px) {
+            .event-container{
+                width:110%
+            }
+            
+        }
     </style>
 
 </head>
@@ -124,7 +130,7 @@
                         COEP
                         CONNECT</h1>
                 </center>
-                <div class="interaction-control-mobile interactions">
+                <!-- <div class="interaction-control-mobile interactions">
                     <i class="fa-regular fa-envelope notified"></i>
                     <i class="fa-regular fa-bell notified"></i>
                     <div class="toggle" onclick="switchTheme()">
@@ -135,7 +141,7 @@
                             <i class="bx bxs-sun"></i>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
 
@@ -168,7 +174,7 @@
                             <div class="event-footer">
                                 <!-- <p style="background-color: #e48e2c">Concert</p> -->
                                 <div class="btn-group">
-                                    <button><a href="{{data.links}}"></a> {{data.links}} </button>
+                                    <span>link:<a href="{{data.links}}"></a> {{data.links}} </span>
                                     <!-- <div class="share">
                   <button class="share-btn">
                     <i class="fa-solid fa-share"></i>
@@ -188,8 +194,9 @@
                 </div> -->
 
                                 </div>
-                                <p>date {{ data.post_time }}</p>
+                                
                             </div>
+                            <p>date {{ data.post_time }}</p>
                         </div>
                     </div>
                     {% endfor %}
@@ -220,7 +227,7 @@
                             <div class="event-footer">
                                 <!-- <p style="background-color: #e48e2c">Concert</p> -->
                                 <div class="btn-group">
-                                    <button><a href="{{data.links}}"></a> {{data.links}} </button>
+                                    <span>link:<a href="{{data.links}}"></a> {{data.links}} </span>
                                     <!-- <div class="share">
                   <button class="share-btn">
                     <i class="fa-solid fa-share"></i>
@@ -240,14 +247,16 @@
                 </div> -->
 
                                 </div>
-                                <p>date {{ data.post_time }}</p>
-                            </div>
+                                
+                            </div><p>date {{ data.post_time }}</p>
                         </div>
                     </div>
                     {% endif %}
                     {% endfor %}
                 </div>
             </div>
+        </div> <div class="right-content"> 
+            <img src="../static/assests/new_logo.png" alt="">
         </div>
         <script src="script.js"></script>
         </div>
