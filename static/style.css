@@ -46,7 +46,9 @@ nav {
   -ms-user-select: none;
   -o-user-select: none;
 }
-
+.right-content img{
+  margin-top: 60%;
+}
 ul,
 ul li {
   outline: 0;

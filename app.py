@@ -1078,7 +1078,7 @@ def connect():
 @app.route('/pollpage')
 def index3():
     user_id = session.get('user_id')
-    polls = polls_collection.find()
+    polls = polls_collection.find().sort('$natural',-1)
     return render_template('polls_page.html', polls=polls,userid=user_id)
 
 @app.route('/create_poll', methods=['GET', 'POST'])
