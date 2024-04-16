@@ -1,100 +1,182 @@
-html,body{
-  height: 100%;
-  background-size: cover;
-  
-      background-image: url("pexels-instawalli-176851.jpg");
-      background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: top;
 
-   
+:root {
+  --bg-body: rgb(245, 247, 255);
+  --primary-color: rgb(42, 51, 65);
+  --primary-hover-color: rgb(158, 161, 166);
+  --scrollbar-color: rgba(131, 135, 193, 0.4);
+  --card-bg-color: rgba(230, 231, 247, 0.1);
+  --pop-bg-color: rgb(245, 247, 255, 0.9);
+  --star-color: #ddcc14;
+  --border-color: rgba(131, 135, 193, 0.4);
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --accent-color: rgb(194, 33, 105);
 }
-  .mt-100 {
-      margin-top: 100px
-  }
-  .choices__input{
-      color: #FFFFFF;
-      background-color: transparent !important;
-  }
-  .choices__inner{
-      color: aliceblue;
-      background-color: transparent !important;
-      backdrop-filter: blur(5px) !important;
-  }
+.main-menu{width: auto  !important;}
+.darkmode {
+  --bg-body: rgb(6, 5, 40);
+  --primary-color: rgb(248, 248, 248);
+  --primary-hover-color: rgb(159, 159, 159);
+  --scrollbar-color: rgba(44, 49, 88, 0.7);
+  --card-bg-color: rgb(24, 26, 50);
+  --star-color: #a1d31a;
+  --border-color: rgba(189, 192, 234, 0.4);
+  --shadow-color: rgba(208, 195, 226, 0.13);
+  --accent-color: rgb(185, 129, 250);
+}
 
-  .d-flex {
-      
-      justify-content: center;
-      margin: 0px;
-      padding: 0px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
+html,
+body {
+  height: 100%;
+  background-color: rgb(6, 5, 40);
+  ;
+  background-position: top;
 
-  .is-open .choices__list--dropdown {
-    background: #28d0c0;
-      color: #000;
-      border-color: #b7b7b7;
+
+}
+
+.mt-100 {
+  margin-top: 100px
+}
+
+h1,h2,h3{
+  font-size: 2rem;
+
+}
+.choices__input {
+  color: #FFFFFF;
+  background-color: transparent !important;
+  border-radius: 5px;
+}
+
+.choices__inner {
+  color: aliceblue;
+  background-color: transparent !important;
+  backdrop-filter: blur(5px) !important;
+}
+
+.d-flex {
+
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.is-open .choices__list--dropdown {
+  background: #28d0c0;
+  color: #000;
+  border-color: #b7b7b7;
+}
+
+.glass-morphism-container-hover-effect {
+  margin-top: 40px;
+  box-shadow: rgba(248, 248, 248, 0.4) 0px 0px 0px 2px, rgba(255, 255, 255, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  /* padding: 30px; */
+  width: 95%;
+  background-color: var(--card-bg-color);
+  border-radius: 8px;
+  border: 2px solid rgba(169, 150, 253, 0.5);
+  box-shadow: 0px 4px 5px 0px var(--shadow-color),
+    0px 1px 8px 0px var(--shadow-color), 0px 2px 4px -1px var(--shadow-color);
+  cursor: pointer;
+  color: white;
+  font-weight: 700;
+  font-family: system-ui !important;
+}
+
+.button-15 {
+  margin: 5px;
+  background-image: linear-gradient(#42A1EC, #0070C9);
+  border: 1px solid #0077CC;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  direction: ltr;
+  display: block;
+  font-family: "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -.022em;
+  line-height: 1.47059;
+  min-width: 30px;
+  overflow: visible;
+  padding: 4px 15px;
+  text-align: center;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.button-15:disabled {
+  cursor: default;
+  opacity: .3;
+}
+
+.button-15:hover {
+  background-image: linear-gradient(#51A9EE, #147BCD);
+  border-color: #1482D0;
+  text-decoration: none;
+}
+
+.button-15:active {
+  background-image: linear-gradient(#3D94D9, #0067B9);
+  border-color: #006DBC;
+  outline: none;
+}
+
+.button-15:focus {
+  box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
+  outline: none;
+}
+.mainn{
+  width: 90%;
+}
+@media (max-width:420px){
+  .mainn{
+    width: 20em;
   }
+  .choices__input {
+    color: #FFFFFF;
+    background-color: transparent !important;
+    border-radius: 5px;
+    width: 20em;
+  }
+  .choices[data-type*=select-multiple] .choices__inner, .choices[data-type*=text] .choices__inner {
+    cursor: text;
+    width: 16em;
+}
+}
+
+.subHead{
+  font-size: 3rem;
+  color: gold;
+}
+.usename{
+  color:white !important;
+}
+.new_cont{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-self: flex-start;
+  text-align: left;
+}
+
+h4{
+  color: white;
+  font-size: 2rem;
+  margin: 25px 20px;
+  display: flex;
+  align-self: flex-start;
+  font-weight: 1000;
+}
+h4 i{
+  color: rgb(10, 138, 242);
+  font-size: 2rem;
   
-  .glass-morphism-container-hover-effect{
-      margin-top: 40px;
-      box-shadow: rgba(248, 248, 248, 0.4) 0px 0px 0px 2px, rgba(255, 255, 255, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;            padding: 30px;
-      width: 70%;
-      backdrop-filter: blur(0px) saturate(308%);
-      -webkit-backdrop-filter: blur(0px) saturate(1%);
-      background-color: rgba(17, 25, 40, 0.57);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.125);
-      cursor: pointer;
-      color: gray;
-font-family: system-ui !important;          }
-    
-    .button-15 {
-      margin: 5px;
-      background-image: linear-gradient(#42A1EC, #0070C9);
-      border: 1px solid #0077CC;
-      border-radius: 4px;
-      box-sizing: border-box;
-      color: #FFFFFF;
-      cursor: pointer;
-      direction: ltr;
-      display: block;
-      font-family: "SF Pro Text","SF Pro Icons","AOS Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
-      font-size: 17px;
-      font-weight: 400;
-      letter-spacing: -.022em;
-      line-height: 1.47059;
-      min-width: 30px;
-      overflow: visible;
-      padding: 4px 15px;
-      text-align: center;
-      vertical-align: baseline;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
-      white-space: nowrap;
-    }
-    
-    .button-15:disabled {
-      cursor: default;
-      opacity: .3;
-    }
-    
-    .button-15:hover {
-      background-image: linear-gradient(#51A9EE, #147BCD);
-      border-color: #1482D0;
-      text-decoration: none;
-    }
-    
-    .button-15:active {
-      background-image: linear-gradient(#3D94D9, #0067B9);
-      border-color: #006DBC;
-      outline: none;
-    }
-    
-    .button-15:focus {
-      box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
-      outline: none;
-    }
+}

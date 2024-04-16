@@ -1,0 +1,84 @@
+
+:root {
+    --bg-body: rgb(245, 247, 255);
+    --primary-color: rgb(42, 51, 65);
+    --primary-hover-color: rgb(158, 161, 166);
+    --scrollbar-color: rgba(131, 135, 193, 0.4);
+    --card-bg-color: rgba(230, 231, 247, 0.1);
+    --pop-bg-color: rgb(245, 247, 255, 0.9);
+    --star-color: #ddcc14;
+    --border-color: rgba(131, 135, 193, 0.4);
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    --accent-color: rgb(194, 33, 105);
+  }
+  .main-menu{width: auto  !important;}
+  .darkmode {
+    --bg-body: rgb(6, 5, 40);
+    --primary-color: rgb(248, 248, 248);
+    --primary-hover-color: rgb(159, 159, 159);
+    --scrollbar-color: rgba(44, 49, 88, 0.7);
+    --card-bg-color: rgb(24, 26, 50);
+    --star-color: #a1d31a;
+    --border-color: rgba(189, 192, 234, 0.4);
+    --shadow-color: rgba(208, 195, 226, 0.13);
+    --accent-color: rgb(185, 129, 250);
+  }
+  
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(6, 5, 40);
+}
+h1{
+    margin: 50px 50px;
+    color: white;
+}
+li{
+    color: white;
+    margin: 0 50px;
+    padding: 10px;
+}
+h2,h3{
+    display: inline-block;
+}
+h2{
+    font-size: 1.5rem;
+}
+h3{
+    margin: 0 10px;
+    font-weight: 1rem;
+    color: yellow;
+}
+.container{
+    margin: 25px 25px;
+    width: 85%;
+    background-color: var(--card-bg-color);
+  border-radius: 8px;
+  border: 2px solid rgba(169, 150, 253, 0.5);
+  box-shadow: 0px 4px 5px 0px var(--shadow-color),
+    0px 1px 8px 0px var(--shadow-color), 0px 2px 4px -1px var(--shadow-color);
+}
+h4{
+    color: white;
+    font-size: 1.2rem;
+    margin: 25px 20px;
+}
+h4 i{
+    color: rgb(10, 138, 242);
+    font-size: 1.2rem;
+    
+}
+
+@media (max-width:420px){
+    h2{
+        font-size: 1.1rem;
+        padding: 0;
+    }
+    h3{
+        font-size: 0.8rem;
+    }
+}

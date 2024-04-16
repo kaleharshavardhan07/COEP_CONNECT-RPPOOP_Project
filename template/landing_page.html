@@ -8,6 +8,7 @@
   <title>COEP CONNECT</title>
   <!-- CSS -->
   <link rel="stylesheet" href="../static/landing_page.css" />
+  <link rel="stylesheet" href="../static/card.css">
 </head>
 
 <body>
@@ -134,31 +135,7 @@
     <!-- Testimonial -->
     <div class="section" id="testimonial">
       <div class="container flex">
-        <div class="text">
-          <h2 class="primary">
-            That's What Our Super <br />
-            Client Says
-          </h2>
-
-          <br />
-          <br />
-          <br />
-
-          <div class="client">
-            <img src="https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/client1.jpg" alt="" />
-            <h2 class="secondary">Exelent Training</h2>
-            <p class="tertiary">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-              quas voluptatem ad, repudiandae voluptates odio deleniti
-              reiciendis in veniam quidem expedita maxime error fugit. Pariatur
-              quasi sunt aut id. Lorem, ipsum dolor sit amet consectetur
-              adipisicing elit. Neque, officiis.
-            </p>
-          </div>
-        </div>
-        <div class="visual">
-          <img src="https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/testimonial.png" alt="" />
-        </div>
+        
       </div>
     </div>
     <!-- End Testimonial -->
@@ -166,22 +143,73 @@
     <!-- Discount -->
     <div class="section" id="discount">
       <div class="container flex">
-        <div class="visual">
-          <img src="https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/discount.png" alt="" />
+        <div class="card">
+          <div class="card__border">
+            <img src="https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="card image" class="card__img" />
+          </div>
+    
+          <h3 class="card__name">Mia Miranda</h3>
+          <span class="card__profession">Interpreter</span>
+    
+          <div class="card__social" id="card-social">
+            <div class="card__social-control">
+              <!-- Toggle Button -->
+              <div class="card__social-toggle" id="card-toggle">
+                <i class="ri-add-line"></i>
+              </div>
+    
+              <span class="card__social-text">My social networks</span>
+    
+              <!-- Card Social -->
+              <ul class="card__social-list">
+                <a href="https://www.facebook.com/" target="_blank" class="card__social-link">
+                  <i class="ri-facebook-line"></i>
+                </a>
+    
+                <a href="https://www.instagram.com/" target="_blank" class="card__social-link">
+                  <i class="ri-instagram-line"></i>
+                </a>
+    
+                <a href="https://www.twitter.com/" target="_blank" class="card__social-link">
+                  <i class="ri-twitter-line"></i>
+                </a>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="text">
-          <h2 class="primary mb">
-            Fitness Classes This Summer, Pay Now And Get 25% Discount
-          </h2>
-
-          <p class="tertiary mb">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab maxime
-            minus praesentium est et veniam voluptate alias excepturi minima
-            placeat amet nostrum, eligendi, quod cum ducimus nesciunt ipsa eum,
-            explicabo eaque obcaecati.
-          </p>
-
-          <a href="#" class="btn bt">Book Now</a>
+        <div class="card">
+          <div class="card__border">
+            <img src="https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="card image" class="card__img" />
+          </div>
+    
+          <h3 class="card__name">Mia Miranda</h3>
+          <span class="card__profession">Interpreter</span>
+    
+          <div class="card__social" id="card-social">
+            <div class="card__social-control">
+              <!-- Toggle Button -->
+              <div class="card__social-toggle" id="card-toggle">
+                <i class="ri-add-line"></i>
+              </div>
+    
+              <span class="card__social-text">My social networks</span>
+    
+              <!-- Card Social -->
+              <ul class="card__social-list">
+                <a href="https://www.facebook.com/" target="_blank" class="card__social-link">
+                  <i class="ri-facebook-line"></i>
+                </a>
+    
+                <a href="https://www.instagram.com/" target="_blank" class="card__social-link">
+                  <i class="ri-instagram-line"></i>
+                </a>
+    
+                <a href="https://www.twitter.com/" target="_blank" class="card__social-link">
+                  <i class="ri-twitter-line"></i>
+                </a>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -205,6 +233,7 @@
   <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
   <!-- JS -->
   <script src="../static/landing_page.js"></script>
+  <script src="../static/card.js"></script>
 </body>
 
 </html>
