@@ -310,9 +310,12 @@ width: 70%;
   cursor: pointer;
 }
 .post-head{
+  
   text-decoration: none;
   font-family: 'Times New Roman', Times, serif;
   color: bisque;
+  font-size: 1.7rem;
+  font-weight: 700;
 
 }
 .bounce-in {
@@ -358,6 +361,10 @@ width: 70%;
 .event-content p {
   font-size: clamp(0.8rem, 4vw, 0.9rem);
   opacity: 0.8;
+  font-size: 1rem;
+}
+.temp{
+  font-size: 1.2rem;
 }
 
 /* Event Footer */

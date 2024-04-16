@@ -38,39 +38,44 @@ img {
 
 .card {
   position: relative;
-  width: 256px;
-  background-color: var(--black-color);
+  width: 300px;
+  background-color: wheat;
   padding: 1.25rem 2rem 3rem;
   border-radius: 1.5rem;
   text-align: center;
   box-shadow: 0 4px 16px hsla(29, 75%, 8%, 0.2);
+  height: 300px;
 }
 
 .card__img {
-  width: 96px;
-  border-radius: 50%;
+  width: 150px;
+  /* border-radius: 50%; */
 }
 
 .card__border {
   width: 110px;
   height: 110px;
-  border: 2px solid var(--first-color);
-  border-radius: 50%;
+  /* border: 2px solid var(--first-color); */
+  /* border-radius: 50%; */
   display: grid;
   place-items: center;
   margin: 0 auto 0.75rem;
 }
 
 .card__name {
-  color: var(--first-color);
-  font-size: var(--h3-font-size);
-  font-weight: 500;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 800;
+  position: relative;
+  top: 30px;
 }
 
 .card__profession {
-  color: var(--text-color);
-  font-size: var(--smaller-font-size);
+  color: rgb(27, 128, 235);
+  font-size: 1rem;
   font-weight: 500;
+  position: relative;
+  top: 30px;
 }
 
 .card__social {
