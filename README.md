@@ -1,56 +1,35 @@
 # RPPOOP_Project
 
-Creating an inventory management system for a web app involves several key components to ensure its functionality and usability. Here are the essential features and considerations you should include in your project:
+# College Social Network
 
-1. **User Authentication and Authorization:**
-   - Implement a secure user authentication system to control access.
-   - Define user roles (e.g., admin, manager, staff) with specific permissions.
+College Social Network is a Flask-based web application for connecting students within a college community. It provides features like user authentication, creating and viewing posts, connecting with other users, creating and participating in polls, and more.
 
-2. **Dashboard:**
-   - Create a user-friendly dashboard for a quick overview of inventory status.
-   - Display key metrics like total products, low-stock items, and recent activities.
+## Features
 
-3. **Product Management:**
-   - Add functionality to add, edit, and delete products.
-   - Include fields for product details such as name, description, category, quantity, price, etc.
+- User authentication: Sign up, login, and logout securely.
+- Profile management: Create and edit user profiles.
+- Posts: Create, view, and interact with posts shared by other users.
+- Connections: Connect with other users and view your connections.
+- Polls: Create and participate in polls on various topics.
+- Notifications: Receive and view notifications for connection requests and other activities.
 
-4. **Inventory Tracking:**
-   - Implement a system to track inventory levels in real-time.
-   - Provide alerts for low-stock or out-of-stock items.
-   - Include options for manual adjustments and inventory transfers.
+## Installation
 
-5. **Supplier Management:**
-   - Allow users to manage information about suppliers.
-   - Associate products with specific suppliers for easy procurement tracking.
+1. Clone the repository:
 
-6. **Purchase Orders:**
-   - Create a module for generating and managing purchase orders.
-   - Track pending and completed orders.
-   - Connect purchase orders to specific suppliers and products.
+   ```bash
+   git clone <repository-url>
+   cd college-social-network
 
-7. **Sales Management:**
-   - Include features for processing sales orders.
-   - Keep track of customer information, order status, and order history.
-
-8. **Reporting:**
-   - Generate reports on inventory levels, sales, and other relevant metrics.
-   - Include visualizations to help users analyze trends and make informed decisions.
-
-9. **Barcode Scanning:**
-   - Implement barcode scanning for efficient product identification.
-   - Allow for easy product additions and updates using barcodes.
-
-10. **Alerts and Notifications:**
-    - Set up automated alerts for critical events, such as low stock or expiring products.
-    - Provide notifications via email or in-app messages.
-
-11. **History and Audit Trail:**
-    - Maintain an audit trail of all inventory-related activities.
-    - Allow users to view the history of changes made to products, quantities, etc.
+2. Install Requirements.txt
+     pip install -r requirements.txt
 
 
-Remember to continuously test and gather feedback during the development process to refine and improve your inventory management system.
+3. Set up MongoDB:
+   Install MongoDB on your system.
+   Start MongoDB server.
+   Ensure MongoDB URI is correctly configured in the Flask application (app.py).
 
-
-
-
+4. RUN FILE
+   
+     python app.py

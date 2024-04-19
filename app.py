@@ -881,7 +881,8 @@ def login():
         if user:
             session['user_id'] = str(user['_id'])
             if 'data_field' in user: 
-                if  user['data_field']:  # Check if profile data exists
+                 # Check if profile data exists IN TH DATA BASE
+                if  user['data_field']: 
                 
                     return redirect(url_for('main_feed'))
                 else:
@@ -940,16 +941,17 @@ def myprof():
         return redirect(url_for('login'))
 @app.route('/myprofile', methods=['POST'])
 def edit_profile():
+    # Redirect to login if user not logged in
     if 'user_id' not in session:
-        return redirect(url_for('login'))  # Redirect to login if user not logged in
+        return redirect(url_for('login'))  
     
     if request.method == 'POST':
         mis_no = request.form['mis_no']
         email = request.form['email']
         mobile_no = request.form['mobile_no']
-        # Fetch user data from MongoDB
+        
         user_data = users_collection.find_one({'_id': ObjectId(session['user_id'])})
-        # Update user data in MongoDB
+       
         users_collection.update_one({'_id': ObjectId(session['user_id'])}, {'$set': {'email': email, 'MIS_NO': mis_no, 'Mobile_No': mobile_no}})
         
         flash('Profile updated successfully.', 'success')
@@ -979,21 +981,21 @@ def change_password():
         new_password = request.form['new_password']
         confirm_password = request.form['confirm_password']
         
-        # Fetch user data from MongoDB
+        #DATA FETCH
         user_data = users_collection.find_one({'_id': ObjectId(session['user_id'])})
         print(user_data['password'])
         print(session['user_id'])
-        # Verify current password
+        # VERIFY USER
         if not user_data or not user_data['password']==current_password:
             flash('Current password is incorrect. Please try again.', 'error')
             return redirect(url_for('mypass'))
         
-        # Check new passwords match
+        # VERIFY
         if new_password != confirm_password:
             flash('New password and confirm password do not match. Please try again.', 'error')
             return redirect(url_for('mypass'))
         
-        # Update password in MongoDB
+        # Update password
         
         users_collection.update_one({'_id': ObjectId(session['user_id'])}, {'$set': {'password': new_password}})
         
