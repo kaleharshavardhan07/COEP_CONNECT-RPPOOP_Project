@@ -18,10 +18,11 @@ College Social Network is a Flask-based web application for connecting students 
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
-   cd college-social-network
+   git clone "https://github.com/kaleharshavardhan07/RPPOOP_Project.git"
+   
 
 2. Install Requirements.txt
+    ```bash
      pip install -r requirements.txt
 
 
@@ -31,5 +32,5 @@ College Social Network is a Flask-based web application for connecting students 
    Ensure MongoDB URI is correctly configured in the Flask application (app.py).
 
 4. RUN FILE
-   
+     ```bash
      python app.py
