@@ -34,3 +34,25 @@ College Social Network is a Flask-based web application for connecting students 
 4. RUN FILE
      ```bash
      python app.py
+
+# My Project
+
+HOME PAGE
+
+![home page](ss/Screenshot%202024-05-11%20182648.png)
+
+
+LOGIN SIGNUP PAGE 
+
+![mian page](ss/Screenshot%202024-05-11%20182724.png)
+
+
+MAIN PAGE 
+
+![feed page](ss/Screenshot%202024-05-11%20182824.png)
+
+
+CONTACT PAGE 
+
+![Contact page](ss/Screenshot%202024-05-11%20182903.png)
+
