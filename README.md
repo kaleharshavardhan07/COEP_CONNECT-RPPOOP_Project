@@ -18,7 +18,7 @@ College Social Network is a Flask-based web application for connecting students 
 1. Clone the repository:
 
    ```bash
-   git clone "https://github.com/kaleharshavardhan07/COEP_CONNECT-RPPOOP_Project.git"
+   git clone "https://github.com/kaleharshavardhan07/RPPOOP_Project.git"
    
 
 2. Install Requirements.txt
